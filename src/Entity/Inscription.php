@@ -27,6 +27,18 @@ class Inscription
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="inscriptions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Outing::class, inversedBy="inscriptions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $outing;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +64,30 @@ class Inscription
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getOuting(): ?Outing
+    {
+        return $this->outing;
+    }
+
+    public function setOuting(?Outing $outing): self
+    {
+        $this->outing = $outing;
 
         return $this;
     }

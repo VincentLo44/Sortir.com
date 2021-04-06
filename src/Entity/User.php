@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -65,6 +67,27 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $isActive;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="users")
+     */
+    private $campus;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="user")
+     */
+    private $inscriptions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Outing::class, mappedBy="planner")
+     */
+    private $createdOuting;
+
+    public function __construct()
+    {
+        $this->inscriptions = new ArrayCollection();
+        $this->createdOuting = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -213,4 +236,77 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inscription[]
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): self
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscription $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getUser() === $this) {
+                $inscription->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Outing[]
+     */
+    public function getCreatedOuting(): Collection
+    {
+        return $this->createdOuting;
+    }
+
+    public function addCreatedOuting(Outing $createdOuting): self
+    {
+        if (!$this->createdOuting->contains($createdOuting)) {
+            $this->createdOuting[] = $createdOuting;
+            $createdOuting->setPlanner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedOuting(Outing $createdOuting): self
+    {
+        if ($this->createdOuting->removeElement($createdOuting)) {
+            // set the owning side to null (unless already changed)
+            if ($createdOuting->getPlanner() === $this) {
+                $createdOuting->setPlanner(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OutingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,9 +50,38 @@ class Outing
     private $outingDetails;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="createdOuting")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $planner;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="outing")
+     */
+    private $inscriptions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="outings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $campus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=OutingStatus::class, inversedBy="outings")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Place::class, inversedBy="outingPlaces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $place;
+
+    public function __construct()
+    {
+        $this->inscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +168,72 @@ class Outing
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPlanner(): ?User
+    {
+        return $this->planner;
+    }
+
+    public function setPlanner(?User $planner): self
+    {
+        $this->planner = $planner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inscription[]
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): self
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setOuting($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscription $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getOuting() === $this) {
+                $inscription->setOuting(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
+
+        return $this;
+    }
+
+    public function getPlace(): ?Place
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Place $place): self
+    {
+        $this->place = $place;
 
         return $this;
     }
