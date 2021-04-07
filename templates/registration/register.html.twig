@@ -30,8 +30,10 @@
             {{ form_widget(registrationForm.plainPassword,
             {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password'}}) }}
 
-            {{ form_row(registrationForm.agreeTerms, {label: 'Agree Terms'}) }}
-
+            <div class="custom-control custom-checkbox">
+                {{ form_widget(registrationForm.agreeTerms) }}
+                {{ form_label(registrationForm.agreeTerms) }}
+            </div>
         <button type="submit" class="btn btn-lg btn-primary">
             Register
         </button>
