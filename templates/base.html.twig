@@ -4,32 +4,35 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/sortir-icon.png') }}">
+        <title>{% block title %}Sortir.com{% endblock %}</title>
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" href="#">SORTIR.COM</a>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <img alt="logo" class="logo" src="{{ asset('img/sortir-logo.png') }}">
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                         aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarColor01">
+                <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
+                            <a class="nav-link" href="#" id="menu">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">My Profile</a>
+                            <a class="nav-link" href="#" id="menu">My Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
+                            <a class="nav-link" href="#" id="menu">Logout</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="menu">Admin</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
@@ -45,13 +48,11 @@
 
         <div class="jumbotron container-fluid p-2">
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col">
+                <div class="col-6 mx-auto">
                     <h1 class="display-4">{% block pageName %}{% endblock %}</h1>
 
                     <p class="lead">{% block pageDescription %}{% endblock %}</p>
                 </div>
-                <div class="col-1"></div>
             </div>
         </div>
 

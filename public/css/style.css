@@ -1,5 +1,16 @@
-footer{
-    background-color:#f8f5f0;
-    color:#171715;
+
+
+header {
+    background-color: #EF8100;
+}
+
+#menu {
+    font-size: 15px;
+}
+
+
+footer {
+    background-color: #EF8100;
+    color: #FFFFFF;
     height: 75px;
 }
