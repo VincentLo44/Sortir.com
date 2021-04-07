@@ -160,12 +160,12 @@ class Outing
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?OutingStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(OutingStatus $status): self
     {
         $this->status = $status;
 
