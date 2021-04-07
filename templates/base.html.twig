@@ -10,7 +10,7 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url("home_home") }}">
                     <img alt="logo" class="logo" src="{{ asset('img/sortir-logo.png') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#" id="menu">Home
+                            <a class="nav-link" href="{{ url("home_home") }}" id="menu">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -29,16 +29,16 @@
                             <a class="nav-link" href="#" id="menu">My Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="menu">Logout</a>
+                            <a class="nav-link" href="{{ url("app_logout")}}" id="menu">Logout ({{ app.user.username }})</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="menu">Admin</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Campus</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a class="dropdown-item" href="#">Cities</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ url("app_register") }}">New User</a>
                             </div>
                         </li>
                     </ul>
@@ -76,12 +76,15 @@
             <div class="row">
                 <div class="col-6 mx-auto">
                     <p><strong>Sortir.com</strong> est un projet réalisé au sein de l'ENI Ecole Informatique</p>
+                    <p><strong>Team 6</strong> - Rose DORLEANS / Vincent LOREAU / Amaury PREVOST</p>
+                    <p><strong>Avril 2021</strong></p>
                 </div>
             </div>
 
     </footer>
 
         <script src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
+        <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
     </body>
