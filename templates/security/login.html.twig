@@ -2,12 +2,7 @@
 
 {% block title %}Log in{% endblock %}
 
-{% block body %}
-
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
+{% block welcome %}
     {% if app.user %}
         <div class="mb-3">
             Hello {{ app.user.username }} ! You are connected
@@ -15,6 +10,14 @@
             <a href="{{ path('app_logout') }}">Log out</a>
         </div>
     {% endif %}
+{% endblock welcome %}
+
+{% block body %}
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
 
     <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
     <form method="post">

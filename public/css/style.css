@@ -8,6 +8,16 @@ header {
     font-size: 15px;
 }
 
+.btn-primary {
+    background-color: #EF8100;
+    border-color: #EF8100;
+}
+
+.btn-primary:hover {
+    background-color: #c46900;
+    border-color: #c46900;
+}
+
 
 footer {
     background-color: #EF8100;
