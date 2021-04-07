@@ -46,6 +46,8 @@ class RegistrationController extends AbstractController
 //                'main' // firewall name in security.yaml
 //            );
 
+            $this->addFlash('success', 'Congrats ! The account of '.$user->getUsername(). ' has been created !');
+
             $this->redirectToRoute('app_register');
         }
 
