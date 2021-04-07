@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -57,18 +57,14 @@
 
         <section class="container-fluid mb-4">
             <div class="row">
-                <div class="col-1"></div>
-                    <div class="col-10">{% block body %}{% endblock %}</div>
-                <div class="col-1"></div>
+                <div class="col-6 mx-auto">{% block body %}{% endblock %}</div>
             </div>
         </section>
     <footer class="container-fluid p-2 pt-3">
             <div class="row">
-                <div class="col-1"></div>
-                    <div class="col-10">
-                        <p><strong>Sortir.com</strong> est un projet réalisé au sein de l'ENI Ecole Informatique</p>
-                    </div>
-                <div class="col-1"></div>
+                <div class="col-6 mx-auto">
+                    <p><strong>Sortir.com</strong> est un projet réalisé au sein de l'ENI Ecole Informatique</p>
+                </div>
             </div>
 
     </footer>
