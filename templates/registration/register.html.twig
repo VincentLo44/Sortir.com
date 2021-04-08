@@ -3,48 +3,52 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <div class="col-4 py-5 mx-auto">
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
 
-    <div>
-    {{ form_start(registrationForm) }}
+        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
 
-            {{ form_widget(registrationForm.username,
-            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
+        <div>
+        {{ form_start(registrationForm) }}
 
-            {{ form_widget(registrationForm.lastname,
-            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
+                {{ form_widget(registrationForm.username,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
 
-            {{ form_widget(registrationForm.firstname,
-            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
+                {{ form_widget(registrationForm.lastname,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
 
-            {{ form_widget(registrationForm.phone,
-            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
+                {{ form_widget(registrationForm.firstname,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
 
-            {{ form_widget(registrationForm.email,
-            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
+                {{ form_widget(registrationForm.phone,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
 
-            <select name="campus" class="custom-select mx-1">
-                <option value="">--Please choose an option--</option>
-                {% for campus in listCampus %}
-                    <option value="{{ campus.id }}">{{campus.name}}</option>
-                {% endfor %}
-            </select>
+                {{ form_widget(registrationForm.email,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
+
+                <select name="campus" class="custom-select mx-1">
+                    <option value="">--Please choose an option--</option>
+                    {% for campus in listCampus %}
+                        <option value="{{ campus.id }}">{{campus.name}}</option>
+                    {% endfor %}
+                </select>
 
 
-        {{ form_widget(registrationForm.plainPassword,
-            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password'}}) }}
+            {{ form_widget(registrationForm.plainPassword,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password'}}) }}
 
-            <div class="custom-control custom-checkbox">
-                {{ form_widget(registrationForm.agreeTerms) }}
-                {{ form_label(registrationForm.agreeTerms) }}
-            </div>
-        <button type="submit" class="btn btn-lg btn-primary">
-            Register
-        </button>
+                <div class="custom-control custom-checkbox">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms) }}
+                </div>
+            <button type="submit" class="btn btn-lg btn-warning">
+                Register
+            </button>
+        </div>
+        {{ form_end(registrationForm) }}
     </div>
-    {{ form_end(registrationForm) }}
+
 {% endblock %}
