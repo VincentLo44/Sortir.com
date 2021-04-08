@@ -2,9 +2,14 @@
 
 namespace App\Repository;
 
+use App\Entity\Campus;
 use App\Entity\Outing;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,22 +25,26 @@ class OutingRepository extends ServiceEntityRepository
         parent::__construct($registry, Outing::class);
     }
 
-    // /**
-    //  * @return Outing[] Returns an array of Outing objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(EntityManagerInterface $entityManager, Search $search): Query
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $entityManager->createQueryBuilder()
+            ->select('*')
+            ->from('Outing', 'u')
+            ->where('u.id >= 0');
+
+        if ($search->getName()) {
+            $query = $query->andWhere('u.name like(%:name%)');
+
+        }
+        return $query->getQuery()->getResult();
+
     }
-    */
+
+
+
 
     /*
     public function findOneBySomeField($value): ?Outing
