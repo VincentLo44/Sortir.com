@@ -17,40 +17,38 @@
 
 {% block body%}
     <div class="mb-4">
-        <h2 class="mb-4 text-center" >
-            <u>Outings list :</u>
-        </h2>
+        {% if app.user %}
+            <h2 class="mb-4 text-center" >
+                <u>Outings list :</u>
+            </h2>
 
-        {% if outings is defined %}
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Date of the event</th>
-                    <th scope="col">End of inscriptions</th>
-                    <th scope="col">Max participants</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for outing in outings %}
+            {% if outings is defined %}
+                <table class="table">
+                    <thead>
                     <tr>
-                        <td width="200">{{ outing.name }}</td>
-                        <td width="200">{{ outing.startingTime|date('d-m-Y à H:i') }}</td>
-                        <td width="200">{{ outing.maxDateInscription|date('d-m-Y à H:i') }}</td>
-                        <td width="200">{{ outing.maxNbInscriptions }}</td>
-                        <td width="200"><a href="#">See details</a></td>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date of the event</th>
+                        <th scope="col">End of inscriptions</th>
+                        <th scope="col">Max participants</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            No outings found
+                    </thead>
+                    <tbody>
+                    {% for outing in outings %}
+                        <tr>
+                            <td width="200">{{ outing.name }}</td>
+                            <td width="200">{{ outing.startingTime|date('d-m-Y à H:i') }}</td>
+                            <td width="200">{{ outing.maxDateInscription|date('d-m-Y à H:i') }}</td>
+                            <td width="200">{{ outing.maxNbInscriptions }}</td>
+                            <td width="200"><a href="#">See details</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                No outings found
+            {% endif %}
         {% endif %}
-
-
-
-
 
 
     </div>
