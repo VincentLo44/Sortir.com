@@ -1,4 +1,11 @@
 
+a {
+    color: #EF8100;
+}
+
+a:hover {
+    color: #c46900;
+}
 
 header {
     background-color: #EF8100;
