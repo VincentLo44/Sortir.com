@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/sortir-icon.png') }}">
-        <title>{% block title %}Sortir.com{% endblock %}</title>
+        <title>Sortir.com | {% block title %}{% endblock %}</title>
     </head>
     <body>
         <header>
@@ -85,7 +85,7 @@
 
         <section class="container-fluid mb-4">
             <div class="row">
-                <div class="col-9 py-5 mx-auto">{% block body %}{% endblock %}</div>
+                {% block body %}{% endblock %}
             </div>
         </section>
     <footer class="container-fluid p-2 pt-3">
