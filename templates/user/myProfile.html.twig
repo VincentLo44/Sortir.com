@@ -29,7 +29,9 @@
         {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password', 'type' : 'password' }}) }}
 
     <div class="form-control m-1">
-        {{ sessionUser.campus.name }}
+        {% if sessionUser.campus %}
+            {{ sessionUser.campus.name }}
+        {% endif %}
     </div>
 
 
