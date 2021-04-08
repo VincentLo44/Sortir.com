@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add an outing{% endblock %}
+
+{% block body %}
+
+    <h1 class="h3 mb-3 font-weight-normal">
+        Create an outing !
+    </h1>
+
+    <div>
+        {{ form_start(outingForm) }}
+
+            {{ form_widget(outingForm.name,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing name'}}) }}
+
+            {{ form_widget(outingForm.startingTime,
+                {'attr': {'class': 'form-control m-1', 'type' : 'date'}}) }}
+
+            {{ form_widget(outingForm.maxDateInscription,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max date inscription', 'type' : 'date'}}) }}
+
+            {{ form_widget(outingForm.duration,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration'}}) }}
+
+            {{ form_widget(outingForm.maxNbInscriptions,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max number inscriptions'}}) }}
+
+            {{ form_widget(outingForm.outingDetails,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing details'}}) }}
+
+        <select name="campus" class="custom-select m-1">
+            <option value="">--Please choose an option--</option>
+            {% for campus in listCampus %}
+                <option value="{{ campus.id }}">{{campus.name}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="city" class="custom-select m-1">
+            <option value="">--Please choose an option--</option>
+            {% for city in listCities %}
+                <option value="{{ city.id }}">{{city.name}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="place" class="custom-select m-1">
+            <option value="">--Please choose an option--</option>
+            {% for place in listPlaces %}
+                <option value="{{ place.id }}">{{place.name}}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn btn-lg btn-primary">
+            Create
+        </button>
+    </div>
+
+    {{ form_end(outingForm) }}
+
+
+{% endblock %}

@@ -50,7 +50,7 @@ class RegistrationController extends AbstractController
 
             $this->addFlash('success', 'Congrats ! The account of '.$user->getUsername(). ' has been created !');
 
-            $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('app_register');
         }
 
         return $this->render('registration/register.html.twig', [
