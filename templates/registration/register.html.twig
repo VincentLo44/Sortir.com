@@ -27,7 +27,15 @@
             {{ form_widget(registrationForm.email,
             {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
 
-            {{ form_widget(registrationForm.plainPassword,
+            <select name="campus" class="custom-select mx-1">
+                <option value="">--Please choose an option--</option>
+                {% for campus in listCampus %}
+                    <option value="{{ campus.id }}">{{campus.name}}</option>
+                {% endfor %}
+            </select>
+
+
+        {{ form_widget(registrationForm.plainPassword,
             {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password'}}) }}
 
             <div class="custom-control custom-checkbox">

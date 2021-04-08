@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Campus;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\Authenticator;
@@ -27,6 +28,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $user->setCampus($this->getDoctrine()->getRepository(Campus::class)->find($_POST['campus']));
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -53,6 +55,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'listCampus' => $this->getDoctrine()->getRepository(Campus::class)->findAll()
         ]);
     }
 }
