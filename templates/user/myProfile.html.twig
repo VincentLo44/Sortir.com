@@ -28,12 +28,11 @@
     {{ form_widget(userForm.password,
         {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password', 'type' : 'password' }}) }}
 
+    {% if sessionUser.campus %}
     <div class="form-control m-1">
-        {% if sessionUser.campus %}
-            {{ sessionUser.campus.name }}
-        {% endif %}
+        {{ sessionUser.campus.name }}
     </div>
-
+    {% endif %}
 
     <button type="submit" class="btn btn-lg btn-primary">
        Update
