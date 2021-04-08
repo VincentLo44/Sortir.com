@@ -18,11 +18,13 @@
 {% block body%}
     <div class="mb-4">
         {% if app.user %}
-            <h2 class="mb-4 text-center" >
-                <u>Outings list :</u>
-            </h2>
+            <div class="mb-2 text-center" >
+                <h2><u>Outings :</u></h2>
+                <a class="col-5 my-5 btn btn-warning btn-lg" href="#">Plan an outing</a>
+            </div>
 
             {% if outings is defined %}
+
                 <table class="table">
                     <thead>
                     <tr>
