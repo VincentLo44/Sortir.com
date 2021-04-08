@@ -3,43 +3,44 @@
 {% block title %}My profile{% endblock %}
 
 {% block body %}
+    <div class="col-4 py-5 mx-auto">
 
-<h1 class="h3 mb-3 font-weight-normal">
-    Bonjour {{ sessionUser.username }}, vous êtes sur votre profil !
-</h1>
+        <h1 class="h3 mb-3 font-weight-normal">
+            Bonjour {{ sessionUser.username }}, vous êtes sur votre profil !
+        </h1>
 
-    {{ form_start(userForm) }}
+            {{ form_start(userForm) }}
 
-    {{ form_widget(userForm.username,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
+            {{ form_widget(userForm.username,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
 
-    {{ form_widget(userForm.lastname,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
+            {{ form_widget(userForm.lastname,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
 
-    {{ form_widget(userForm.firstname,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
+            {{ form_widget(userForm.firstname,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
 
-    {{ form_widget(userForm.phone,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
+            {{ form_widget(userForm.phone,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
 
-    {{ form_widget(userForm.email,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
+            {{ form_widget(userForm.email,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
 
-    {{ form_widget(userForm.password,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password', 'type' : 'password' }}) }}
+            {{ form_widget(userForm.password,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password', 'type' : 'password' }}) }}
 
-    {% if sessionUser.campus %}
-    <div class="form-control m-1">
-        {{ sessionUser.campus.name }}
+            {% if sessionUser.campus %}
+            <div class="form-control m-1">
+                {{ sessionUser.campus.name }}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-lg btn-primary">
+               Update
+            </button>
+
+            {{ form_end(userForm) }}
+
     </div>
-    {% endif %}
-
-    <button type="submit" class="btn btn-lg btn-primary">
-       Update
-    </button>
-
-    {{ form_end(userForm) }}
-
-
 
 {% endblock %}
