@@ -3,9 +3,9 @@ a {
     color: #EF8100;
 }
 
-a:hover {
-    color: #c46900;
-}
+    a:hover {
+        color: #c46900;
+    }
 
 header {
     background-color: #EF8100;
@@ -15,15 +15,20 @@ header {
     font-size: 15px;
 }
 
-.btn-primary {
-    background-color: #EF8100;
-    border-color: #EF8100;
-}
+    .btn-primary {
+        background-color: #EF8100;
+        border-color: #EF8100;
+    }
 
-.btn-primary:hover {
-    background-color: #c46900;
-    border-color: #c46900;
-}
+        .btn-primary:hover {
+            background-color: #c46900;
+            border-color: #c46900;
+        }
+
+        .btn-primary:active {
+            background-color: #c46900;
+            border-color: #c46900;
+        }
 
 
 footer {

@@ -10,7 +10,7 @@
     <p class="lead">
         {% if app.user %}
         {% else %}
-        <a class="btn btn-primary btn-lg" href="{{ url('app_login') }}" role="button">Login</a>
+        <a class="btn btn-warning btn-lg" href="{{ url('app_login') }}" role="button">Login</a>
         {%  endif %}
     </p>
 {% endblock %}
