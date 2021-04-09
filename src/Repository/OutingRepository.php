@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Campus;
 use App\Entity\Outing;
 use App\Entity\Search;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -47,6 +48,11 @@ class OutingRepository extends ServiceEntityRepository
 
         if ($search->getDateMax()) {
             $query = $query->andWhere('u.startingTime < :dateMax')->setParameter(':dateMax', $search->getDateMax());
+        }
+
+        if ($search->getPlanner()) {
+            $query = $query->andWhere('u.planner = :planner')
+                    ->setParameter(':planner', $search->getPlanner()->getId());
         }
 
 

@@ -16,8 +16,8 @@ class HomeFiltersType extends AbstractType
         $builder
             ->add('name')
             ->add('campus')
-            ->add('dateMin', DateTimeType::class, ['widget'=>'single_text'])
-            ->add('dateMax', DateTimeType::class, ['widget'=>'single_text'])
+            ->add('dateMin', DateTimeType::class, ['widget'=>'single_text','required' => false,'by_reference' => true])
+            ->add('dateMax', DateTimeType::class, ['widget'=>'single_text','required' => false, 'by_reference' => true])
         ;
     }
 
@@ -26,6 +26,7 @@ class HomeFiltersType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Search::class,
             'method' => 'get',
+            'allow_extra_fields' => true,
             'csrf_protection' => false
         ]);
     }

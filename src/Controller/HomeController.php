@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Campus;
 use App\Entity\Outing;
 use App\Entity\Search;
+use App\Entity\User;
 use App\Form\HomeFiltersType;
 use App\Repository\CampusRepository;
 use App\Repository\OutingRepository;
@@ -38,6 +39,10 @@ class HomeController extends AbstractController
             if (isset($_GET['campus']) && $_GET['campus']!= 0) {
                 $search->setCampus($_GET['campus']);
             }
+            if (isset($_GET['planner'])){
+                $search->setPlanner($this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $_GET['planner']]));
+            }
+
         }
         $outings = $outingRepository->findAllVisibleQuery($search);
 
