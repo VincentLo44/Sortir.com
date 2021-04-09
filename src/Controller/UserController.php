@@ -29,8 +29,15 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+//        if ($_POST['user[password][first]'] != $_POST['user[password][second]']){
+//            $this->addFlash('danger', 'Passwords ar note the same !');
+//
+//            return $this->redirectToRoute('user_my_profile');
+//        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -42,7 +49,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Congrats ! Your account of has been modified !');
 
-            $this->redirectToRoute('home_home');
+            return $this->redirectToRoute('home_home');
         }
 
         return $this->render('user/myProfile.html.twig',
