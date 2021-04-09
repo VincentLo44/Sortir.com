@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Search;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +16,8 @@ class HomeFiltersType extends AbstractType
         $builder
             ->add('name')
             ->add('campus')
-            ->add('dateMin')
-            ->add('dateMax')
+            ->add('dateMin', DateTimeType::class, ['widget'=>'single_text'])
+            ->add('dateMax', DateTimeType::class, ['widget'=>'single_text'])
         ;
     }
 

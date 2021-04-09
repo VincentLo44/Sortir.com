@@ -30,16 +30,14 @@ class HomeController extends AbstractController
     public function home( outingRepository $outingRepository, Request $request): Response
     {
         $search = new Search();
+        //$search->setDateMin(new \DateTime());
         $form = $this->createForm(HomeFiltersType::class, $search);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $search->setName($_GET['name']);
-            $search->setCampus($_GET['campus']);
-       //     $search->setDateMin($_GET['dateMin']);
-       //     $dMinString = $dateMin->format('Y-m-d');
-        //    $dateMax = $search->getDateMax();
-         //   $dMaxString = $dateMax->format('Y-m-d');
 
+            if (isset($_GET['campus']) && $_GET['campus']!= 0) {
+                $search->setCampus($_GET['campus']);
+            }
         }
         $outings = $outingRepository->findAllVisibleQuery($search);
 
@@ -47,6 +45,7 @@ class HomeController extends AbstractController
             'outings' => $outings,
             'form' => $form->createView(),
             'listCampus' => $this->getDoctrine()->getRepository(Campus::class)->findAll(),
+
         ]);
     }
 
