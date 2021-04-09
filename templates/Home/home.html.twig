@@ -94,7 +94,7 @@
                                 <td width="200">{{ outing.maxDateInscription|date('d/m/Y à H:i') }}</td>
                                 <td width="200">{{ outing.campus.name}}</td>
                                 <td width="200"><a href="#">{{ outing.planner.username }}</a></td>
-                                <td width="200"><a href="#">See details</a></td>
+                                <td width="200"><a href="{{ url('outing_detail',{ "id": outing.id })}}">See details</a></td>
 
                             </tr>
                         {% endfor %}
