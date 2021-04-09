@@ -29,7 +29,7 @@
                         <div class="col-6">
                             <div >
                                 <select name="campus" class="form-control mb-3">
-                                    <option value="">--Choose a campus--</option>
+                                    <option value="0">--Choose a campus--</option>
                                     {% for camp in listCampus %}
                                         <option value="{{ camp.id }}">{{camp.name}}</option>
                                     {% endfor %}
@@ -51,25 +51,24 @@
 
                         </div>
                         <div class="col-6">
-
-                            <input name="planner" type="checkbox" value="{{ app.user.userName }}">
-                            <label >Outings where I am the planner</label>
-                            <br>
-                            <input name="registered" type="checkbox" value="">
-                            <label >Outings I registered</label>
-                            <br>
-                            <input name="notRegistered" type="checkbox" value="">
-                            <label >Outings I didn't registered</label>
-                            <br>
-                            <input name="pastOuting" type="checkbox" value="true">
-                            <label >Past outings</label>
+                            <div>
+                                <input name="planner" type="checkbox" value="{{ app.user.userName }}">
+                                <label >Outings where I am the planner</label>
+                            </div>
+                            <div>
+                                <input name="registered" type="checkbox" value="">
+                                <label >Outings I registered</label>
+                            </div>
+                            <div>
+                                <input name="notRegistered" type="checkbox" value="">
+                                <label >Outings I didn't registered</label>
+                            </div>
                         </div>
                         <div class="mx-auto pt-5">
                             <button type="submit" class="btn btn-warning">
                                 Search
                             </button>
                         </div>
-
                     </form>
 
                 </div>
@@ -83,7 +82,7 @@
                             <th scope="col">Date of the event</th>
                             <th scope="col">End of inscriptions</th>
                             <th scope="col">Campus</th>
-                            <th scope="col">Max participants</th>
+                            <th scope="col">Planner</th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
@@ -91,10 +90,10 @@
                         {% for outing in outings %}
                             <tr>
                                 <td width="200">{{ outing.name }}</td>
-                                <td width="200">{{ outing.startingTime|date('d-m-Y à H:i') }}</td>
-                                <td width="200">{{ outing.maxDateInscription|date('d-m-Y à H:i') }}</td>
+                                <td width="200">{{ outing.startingTime|date('d/m/Y à H:i') }}</td>
+                                <td width="200">{{ outing.maxDateInscription|date('d/m/Y à H:i') }}</td>
                                 <td width="200">{{ outing.campus.name}}</td>
-                                <td width="200">{{ outing.maxNbInscriptions }}</td>
+                                <td width="200"><a href="#">{{ outing.planner.username }}</a></td>
                                 <td width="200"><a href="#">See details</a></td>
 
                             </tr>

@@ -41,6 +41,14 @@ class OutingRepository extends ServiceEntityRepository
             $query = $query->andWhere('u.campus = :campus')->setParameter(':campus', $search->getCampus());
         }
 
+        if ($search->getDateMin()) {
+            $query = $query->andWhere('u.startingTime > :dateMin')->setParameter(':dateMin', $search->getDateMin());
+        }
+
+        if ($search->getDateMax()) {
+            $query = $query->andWhere('u.startingTime < :dateMax')->setParameter(':dateMax', $search->getDateMax());
+        }
+
 
         return $query->getQuery()->getResult();
 
