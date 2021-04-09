@@ -76,6 +76,10 @@ class OutingController extends AbstractController
 
         $outing = $entityManager->getRepository(Outing::class)->find($id);
 
+        if (is_null($outing)) {
+            return $this->render('error/outingNotFound.html.twig');
+        }
+
         return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
 }
