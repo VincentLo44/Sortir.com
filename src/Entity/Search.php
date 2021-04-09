@@ -30,7 +30,7 @@ class Search
     private $dateMax;
 
     /**
-     * @var boolean|null
+     * @var User|null
      */
     private $planner;
 
@@ -114,17 +114,17 @@ class Search
     }
 
     /**
-     * @return bool|null
+     * @return User|null
      */
-    public function getPlanner(): ?bool
+    public function getPlanner(): ?User
     {
         return $this->planner;
     }
 
     /**
-     * @param bool|null $planner
+     * @param User $planner
      */
-    public function setPlanner(bool $planner): void
+    public function setPlanner(User $planner): void
     {
         $this->planner = $planner;
     }
