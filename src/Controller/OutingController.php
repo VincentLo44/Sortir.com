@@ -29,19 +29,28 @@ class OutingController extends AbstractController
         $outing = new Outing();
         $outing->setStartingTime(new \DateTime());
         $outing->setMaxDateInscription(new \DateTime());
-        $outing->setPlanner($this->getDoctrine()->getRepository(User::class)
-            ->findOneBy(['username' => $this->getUser()->getUsername()]));
-        $outing->setCampus($this->getDoctrine()->getRepository(Campus::class)
-            ->findOneBy(['id' => $_POST['campus']]));
-        $outing->setStatus($this->getDoctrine()->getRepository(OutingStatus::class)
-            ->find(1));
-        $outing->setPlace($this->getDoctrine()->getRepository(Place::class)
-            ->findOneBy(['id' => $_POST['place']]));
+
         $form = $this->createForm(OutingType::class, $outing);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $outing->setPlanner($this->getDoctrine()->getRepository(User::class)
+                ->findOneBy(['username' => $this->getUser()->getUsername()]));
+
+            if(isset($_POST['campus'])) {
+                $outing->setCampus($this->getDoctrine()->getRepository(Campus::class)
+                    ->find($_POST['campus']));
+            }
+
+            $outing->setStatus($this->getDoctrine()->getRepository(OutingStatus::class)
+                ->findOneBy(['description'=> 'Created']));
+
+            if(isset($_POST['place'])) {
+                $outing->setPlace($this->getDoctrine()->getRepository(Place::class)
+                    ->findOneBy(['id' => $_POST['place']]));
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($outing);
