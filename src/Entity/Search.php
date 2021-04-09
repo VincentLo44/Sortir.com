@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 
+use DateTime;
 use Symfony\Component\Validator\Constraints\Date;
 
 class Search
@@ -19,12 +20,12 @@ class Search
     private $name;
 
     /**
-     * @var date|null
+     * @var datetime|null
      */
     private $dateMin;
 
     /**
-     * @var date|null
+     * @var datetime|null
      */
     private $dateMax;
 
@@ -81,33 +82,33 @@ class Search
     }
 
     /**
-     * @return Date|null
+     * @return DateTime|null
      */
-    public function getDateMin(): ?Date
+    public function getDateMin(): ?DateTime
     {
         return $this->dateMin;
     }
 
     /**
-     * @param Date|null $dateMin
+     * @param DateTime|null $dateMin
      */
-    public function setDateMin(Date $dateMin): void
+    public function setDateMin(DateTime $dateMin): void
     {
         $this->dateMin = $dateMin;
     }
 
     /**
-     * @return Date|null
+     * @return DateTime|null
      */
-    public function getDateMax(): ?Date
+    public function getDateMax(): ?DateTime
     {
         return $this->dateMax;
     }
 
     /**
-     * @param Date|null $dateMax
+     * @param DateTime|null $dateMax
      */
-    public function setDateMax(Date $dateMax): void
+    public function setDateMax(DateTime $dateMax): void
     {
         $this->dateMax = $dateMax;
     }

@@ -35,8 +35,13 @@ class OutingRepository extends ServiceEntityRepository
 
         if ($search->getName()) {
             $query = $query->andWhere('u.name like :name')->setParameter(':name', '%'.$search->getName().'%');
-
         }
+
+        if ($search->getCampus()) {
+            $query = $query->andWhere('u.campus = :campus')->setParameter(':campus', $search->getCampus());
+        }
+
+
         return $query->getQuery()->getResult();
 
     }
