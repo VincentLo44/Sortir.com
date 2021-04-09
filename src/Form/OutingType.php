@@ -18,7 +18,6 @@ class OutingType extends AbstractType
             ->add('maxDateInscription', null, ['widget' => 'single_text'])
             ->add('maxNbInscriptions')
             ->add('outingDetails')
-
         ;
     }
 

@@ -32,21 +32,21 @@
                     {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing details'}}) }}
 
             <select name="campus" class="custom-select m-1">
-                <option value="">--Please choose an option--</option>
+                <option value="">--Please choose a campus--</option>
                 {% for campus in listCampus %}
                     <option value="{{ campus.id }}">{{campus.name}}</option>
                 {% endfor %}
             </select>
 
             <select name="city" class="custom-select m-1">
-                <option value="">--Please choose an option--</option>
+                <option value="">--Please choose a city--</option>
                 {% for city in listCities %}
                     <option value="{{ city.id }}">{{city.name}}</option>
                 {% endfor %}
             </select>
 
             <select name="place" class="custom-select m-1">
-                <option value="">--Please choose an option--</option>
+                <option value="">--Please choose a place--</option>
                 {% for place in listPlaces %}
                     <option value="{{ place.id }}">{{place.name}}</option>
                 {% endfor %}
