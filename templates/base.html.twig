@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark py-0">
                 <a class="navbar-brand" href="{{ url("home_home") }}">
                     <img alt="logo" class="logo" src="{{ asset('img/sortir-logo.png') }}">
                 </a>
@@ -83,14 +83,14 @@
             </div>
         </div>
 
-        <section class="container-fluid mb-4">
+        <section class="container-fluid my-4">
             <div class="row">
                 {% block body %}{% endblock %}
             </div>
         </section>
-    <footer class="container-fluid p-2 pt-3">
+    <footer class="container-fluid py-4 pt-3">
             <div class="row">
-                <div class="col-6 mx-auto">
+                <div class="col-8 mx-auto">
                     <p><strong>Sortir.com</strong> est un projet réalisé au sein de &copy;ENI Ecole Informatique</p>
                     <p><strong>Team 6</strong> - Rose DORLEANS / Vincent LOREAU / Amaury PREVOST</p>
                     <p><strong>Avril 2021</strong></p>

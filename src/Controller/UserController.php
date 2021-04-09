@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Outing;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,6 +59,24 @@ class UserController extends AbstractController
 
             // TODO => gérer le flash message en cas d'erreur
 //        $this->addFlash('warning', 'There is a problem !');
+
+    }
+
+    /**
+     * @Route(path="details_profile/{id}", requirements={"id" : "\d+"}, name="details_profile")
+     */
+    public function details(Request $request, EntityManagerInterface $entityManager) {
+
+        $id = $request->get('id');
+
+        $outing = $entityManager->getRepository(Outing::class)->find($id);
+
+        if (is_null($outing)) {
+            return $this->render('error/userNotFound.html.twig');
+        }
+
+        return $this->render('user/detailsProfile.html.twig', ['outing' => $outing]);
+
 
     }
 

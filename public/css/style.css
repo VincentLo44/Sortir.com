@@ -15,20 +15,14 @@ header {
     font-size: 15px;
 }
 
-    .btn-primary {
-        background-color: #EF8100;
-        border-color: #EF8100;
-    }
 
-        .btn-primary:hover {
-            background-color: #c46900;
-            border-color: #c46900;
-        }
+#button-send {
+    padding: 4px 15px;
+}
 
-        .btn-primary:active {
-            background-color: #c46900;
-            border-color: #c46900;
-        }
+#button-send img {
+    height: 30px;
+}
 
 
 footer {

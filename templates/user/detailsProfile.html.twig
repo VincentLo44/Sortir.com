@@ -1,24 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My profile{% endblock %}
+{% block title %}Profile details{% endblock %}
 
 {% block body %}
     <div class="col-4 py-5 mx-auto">
+        <h1 class="h2 mb-5 font-weight-normal text-center">
 
-        <h1 class="h3 mb-3 font-weight-normal">
-            Hello {{ sessionUser.username }} ! <br>
-            Here, you can update your profile !
+            <strong>{{ outing.planner.username }}</strong>
         </h1>
-
-            {% if sessionUser.campus %}
-            <div class="form-control m-1">
-                {{ sessionUser.campus.name }}
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Firstname</th>
+                    <td>{{ outing.planner.firstname }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Lastname</th>
+                    <td>{{ outing.planner.lastname }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone number</th>
+                    <td>{{ outing.planner.phone }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Email address</th>
+                    <td>{{ outing.planner.email }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Campus</th>
+                    <td>{{ outing.campus.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row mt-5 d-flex justify-content-center">
+            <div class="mr-2">
+                <a href="{{ url("home_home") }}" class="btn btn-lg btn-warning">
+                    Back to home
+                </a>
             </div>
-            {% endif %}
+            <div class="ml-2">
+                <a href="#" class="btn btn-lg btn-warning" id="button-send">
+                    <img alt="logo" class="logo" src="{{ asset('img/send.png') }}">
+                </a>
+            </div>
+        </div>
 
-            <button type="submit" class="btn btn-lg btn-primary">
-               Update
-            </button>
 
 
 
