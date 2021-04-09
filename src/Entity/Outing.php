@@ -6,6 +6,7 @@ use App\Repository\OutingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OutingRepository::class)
@@ -26,6 +27,10 @@ class Outing
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Range(
+     *      min = "now",
+     *      notInRangeMessage = "Nobody can travel to the past ;)"
+     * )
      */
     private $startingTime;
 
@@ -41,6 +46,9 @@ class Outing
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *     min = 1
+     * )
      */
     private $maxNbInscriptions;
 
