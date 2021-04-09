@@ -13,6 +13,9 @@ class HomeFiltersType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('campus')
+            ->add('dateMin')
+            ->add('dateMax')
         ;
     }
 

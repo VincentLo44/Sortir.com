@@ -34,13 +34,19 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $search->setName($_GET['name']);
+            $search->setCampus($_GET['campus']);
+       //     $search->setDateMin($_GET['dateMin']);
+       //     $dMinString = $dateMin->format('Y-m-d');
+        //    $dateMax = $search->getDateMax();
+         //   $dMaxString = $dateMax->format('Y-m-d');
 
         }
         $outings = $outingRepository->findAllVisibleQuery($search);
 
         return $this->render('home/home.html.twig', [
-            'outings'=>$outings,
-            'form'=>$form->createView()
+            'outings' => $outings,
+            'form' => $form->createView(),
+            'listCampus' => $this->getDoctrine()->getRepository(Campus::class)->findAll(),
         ]);
     }
 
