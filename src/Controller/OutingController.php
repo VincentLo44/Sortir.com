@@ -7,7 +7,9 @@ namespace App\Controller;
 use App\Entity\Campus;
 use App\Entity\City;
 use App\Entity\Outing;
+use App\Entity\OutingStatus;
 use App\Entity\Place;
+use App\Entity\User;
 use App\Form\OutingType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,11 +29,28 @@ class OutingController extends AbstractController
         $outing = new Outing();
         $outing->setStartingTime(new \DateTime());
         $outing->setMaxDateInscription(new \DateTime());
+
         $form = $this->createForm(OutingType::class, $outing);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $outing->setPlanner($this->getDoctrine()->getRepository(User::class)
+                ->findOneBy(['username' => $this->getUser()->getUsername()]));
+
+            if(isset($_POST['campus'])) {
+                $outing->setCampus($this->getDoctrine()->getRepository(Campus::class)
+                    ->find($_POST['campus']));
+            }
+
+            $outing->setStatus($this->getDoctrine()->getRepository(OutingStatus::class)
+                ->findOneBy(['description'=> 'Created']));
+
+            if(isset($_POST['place'])) {
+                $outing->setPlace($this->getDoctrine()->getRepository(Place::class)
+                    ->findOneBy(['id' => $_POST['place']]));
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($outing);
