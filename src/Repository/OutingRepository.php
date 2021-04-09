@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\Array_;
 
 /**
  * @method Outing|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,17 +27,14 @@ class OutingRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Query
+     * @return array
      */
-    public function findAllVisibleQuery(EntityManagerInterface $entityManager, Search $search): Query
+    public function findAllVisibleQuery(Search $search): array
     {
-        $query = $entityManager->createQueryBuilder()
-            ->select('*')
-            ->from('Outing', 'u')
-            ->where('u.id >= 0');
+        $query = $this->createQueryBuilder('u');
 
         if ($search->getName()) {
-            $query = $query->andWhere('u.name like(%:name%)');
+            $query = $query->andWhere('u.name like :name')->setParameter(':name', '%'.$search->getName().'%');
 
         }
         return $query->getQuery()->getResult();
