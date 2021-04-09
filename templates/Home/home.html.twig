@@ -52,6 +52,17 @@
                         </div>
                         <div class="col-6">
 
+                            <input name="planner" type="checkbox" value="{{ app.user.userName }}">
+                            <label >Outings where I am the planner</label>
+                            <br>
+                            <input name="registered" type="checkbox" value="">
+                            <label >Outings I registered</label>
+                            <br>
+                            <input name="notRegistered" type="checkbox" value="">
+                            <label >Outings I didn't registered</label>
+                            <br>
+                            <input name="pastOuting" type="checkbox" value="true">
+                            <label >Past outings</label>
                         </div>
                         <div class="mx-auto pt-5">
                             <button type="submit" class="btn btn-warning">
@@ -71,6 +82,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Date of the event</th>
                             <th scope="col">End of inscriptions</th>
+                            <th scope="col">Campus</th>
                             <th scope="col">Max participants</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -81,8 +93,10 @@
                                 <td width="200">{{ outing.name }}</td>
                                 <td width="200">{{ outing.startingTime|date('d-m-Y à H:i') }}</td>
                                 <td width="200">{{ outing.maxDateInscription|date('d-m-Y à H:i') }}</td>
+                                <td width="200">{{ outing.campus.name}}</td>
                                 <td width="200">{{ outing.maxNbInscriptions }}</td>
                                 <td width="200"><a href="#">See details</a></td>
+
                             </tr>
                         {% endfor %}
                         </tbody>
