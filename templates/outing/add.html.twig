@@ -10,18 +10,22 @@
             Create an outing !
         </h1>
 
-        <div>
             {{ form_start(outingForm) }}
 
                 {{ form_widget(outingForm.name,
                     {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing name'}}) }}
-
-                {{ form_widget(outingForm.startingTime,
-                    {'attr': {'class': 'form-control m-1', 'type' : 'date'}}) }}
-
-                {{ form_widget(outingForm.maxDateInscription,
-                    {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max date inscription', 'type' : 'date'}}) }}
-
+            <div class="border p-2 ml-2">
+                <div class="col">
+                    Starting time
+                    {{ form_widget(outingForm.startingTime,
+                        {'attr': {'class': 'form-control m-1', 'type' : 'date'}}) }}
+                </div>
+                <div class="col">
+                    Max date inscription
+                    {{ form_widget(outingForm.maxDateInscription,
+                        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max date inscription', 'type' : 'date'}}) }}
+                </div>
+            </div>
                 {{ form_widget(outingForm.duration,
                     {'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration'}}) }}
 
@@ -62,6 +66,5 @@
         </div>
 
         {{ form_end(outingForm) }}
-    </div>
 
 {% endblock %}

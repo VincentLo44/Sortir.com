@@ -67,4 +67,15 @@ class OutingController extends AbstractController
             'listPlaces' => $this->getDoctrine()->getRepository(Place::class)->findAll()
         ]);
     }
+
+    /**
+     * @Route(path="detail/{id}", requirements={"id" : "\d+"}, name="detail")
+     */
+    public function detail(Request $request, EntityManagerInterface $entityManager) {
+        $id = $request->get('id');
+
+        $outing = $entityManager->getRepository(Outing::class)->find($id);
+
+        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+    }
 }
