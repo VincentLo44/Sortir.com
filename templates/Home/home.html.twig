@@ -23,20 +23,20 @@
                     <h2><u>Outings :</u></h2>
                     <a class="col-5 my-5 btn btn-warning btn-lg" href="#">Plan an outing</a>
                 </div>
-                <div class="jumbotron">
+                <div class="jumbotron py-4">
                     <form class="row">
                         {{ form_start(form) }}
                         <div class="col-6">
-                            <div >
+                            <div class="border p-2">
                                 <select name="campus" class="form-control mb-3">
                                     <option value="0">--Choose a campus--</option>
                                     {% for camp in listCampus %}
                                         <option value="{{ camp.id }}">{{camp.name}}</option>
                                     {% endfor %}
                                 </select>
-                            </div>
-                            <div >
-                                {{ form_widget(form.name, {'attr': {'name': 'name', 'class': 'form-control  mb-3', 'placeholder' : 'Search by name'}}) }}
+                                <div >
+                                    {{ form_widget(form.name, {'attr': {'name': 'name', 'class': 'form-control  mb-3', 'placeholder' : 'Search by name'}}) }}
+                                </div>
                             </div>
                             <div class="border p-2">
                                 <div class="col">
@@ -50,21 +50,21 @@
                             </div>
 
                         </div>
-                        <div class="col-6">
-                            <div>
+                        <div class=" border col-6">
+                            <div class="my-4">
                                 <input name="planner" type="checkbox" value="{{ app.user.userName }}">
                                 <label >Outings where I am the planner</label>
                             </div>
-                            <div>
+                            <div class="my-4">
                                 <input name="registered" type="checkbox" value="">
                                 <label >Outings I registered</label>
                             </div>
-                            <div>
+                            <div class="my-4">
                                 <input name="notRegistered" type="checkbox" value="">
                                 <label >Outings I didn't registered</label>
                             </div>
                         </div>
-                        <div class="mx-auto pt-5">
+                        <div class="mx-auto pt-4">
                             <button type="submit" class="btn btn-warning">
                                 Search
                             </button>
