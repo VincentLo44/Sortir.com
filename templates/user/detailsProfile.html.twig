@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My profile{% endblock %}
+
+{% block body %}
+    <div class="col-4 py-5 mx-auto">
+
+        <h1 class="h3 mb-3 font-weight-normal">
+            Hello {{ sessionUser.username }} ! <br>
+            Here, you can update your profile !
+        </h1>
+
+            {% if sessionUser.campus %}
+            <div class="form-control m-1">
+                {{ sessionUser.campus.name }}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-lg btn-primary">
+               Update
+            </button>
+
+
+
+
+
+{% endblock %}

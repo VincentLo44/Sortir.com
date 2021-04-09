@@ -27,18 +27,21 @@
                     <form class="row">
                         {{ form_start(form) }}
                         <div class="col-6">
-                            <div class="border p-2">
-                                <select name="campus" class="form-control mb-3">
-                                    <option value="0">--Choose a campus--</option>
-                                    {% for camp in listCampus %}
-                                        <option value="{{ camp.id }}">{{camp.name}}</option>
-                                    {% endfor %}
-                                </select>
-                                <div >
+                            <div class="border pt-3">
+                                <div class="col">
+                                    <select name="campus" class="form-control mb-3">
+                                        <option value="0">--Choose a campus--</option>
+                                        {% for camp in listCampus %}
+                                            <option value="{{ camp.id }}">{{camp.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col">
                                     {{ form_widget(form.name, {'attr': {'name': 'name', 'class': 'form-control  mb-3', 'placeholder' : 'Search by name'}}) }}
                                 </div>
                             </div>
-                            <div class="border p-2">
+                            <div class="border pt-3">
                                 <div class="col">
                                     Between
                                     {{ form_widget(form.dateMin, {'attr': {'name': 'dateMin', 'class': 'form-control  mb-3', 'type': 'date'}}) }}
