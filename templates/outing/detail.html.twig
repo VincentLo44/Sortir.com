@@ -4,26 +4,80 @@
 
 {% block body %}
 
-<div class="col-6 py-5 mx-auto">
+<div class="col-4 py-5 mx-auto">
 
-    <h1 class="h3 mb-3 font-weight-normal">
-        {{ outing.name }} outing details !
+    <h1 class="h2 mb-5 font-weight-normal text-center">
+        <strong>{{ outing.name }} outing details !</strong>
     </h1>
 
-    <ul>
-        <li> Duration : {{ outing.duration }} minutes </li>
-        <li> Outing's date and hour : {{ outing.startingTime | date }}</li>
-        <li> Inscription's date and hour limit : {{ outing.maxDateInscription | date }}</li>
-        <li> Max inscriptions : {{ outing.maxNbInscriptions }} places </li>
-        <li> Description and informations : {{ outing.outingDetails }} </li>
-        <li> Campus : {{ outing.campus.name | capitalize }} </li>
-        <li> Place : {{ outing.place.name }} </li>
-        <li> Street : {{ outing.place.address }} </li>
-        <li> Postal code : {{ outing.place.city.postalCode }} </li>
-        <li> Latitude : {{ outing.place.latitude }} </li>
-        <li> Longitude : {{ outing.place.longitude }} </li>
-    </ul>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Duration</th>
+                <td>{{ outing.duration }} minutes</td>
+            </tr>
+            <tr>
+                <th scope="row">Outing's date and hour</th>
+                <td>{{ outing.startingTime | date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Inscription's date and hour limit</th>
+                <td>{{ outing.maxDateInscription | date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Max number of registrations</th>
+                <td>{{ outing.maxNbInscriptions }} places</td>
+            </tr>
+            <tr>
+                <th scope="row">Description and informations</th>
+                <td>{{ outing.outingDetails }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Campus</th>
+                <td>{{ outing.campus.name | capitalize }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Place</th>
+                <td>{{ outing.place.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Street</th>
+                <td>{{ outing.place.address }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Postal code</th>
+                <td>{{ outing.place.city.postalCode }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Latitude</th>
+                <td>{{ outing.place.latitude }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Longitude</th>
+                <td>{{ outing.place.longitude }}</td>
+            </tr>
+        </tbody>
+    </table>
 
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="mr-2">
+            <button type="submit" class="btn btn-lg btn-warning">
+                Register
+            </button>
+        </div>
+
+        <div class="mr-2">
+            <a href="{{ url("home_home") }}" class="btn btn-lg btn-warning">
+                Back to home
+            </a>
+        </div>
+
+        <div class="mr-2">
+            <a href="#" class="btn btn-lg btn-warning" id="button-send">
+                <img alt="logo" class="logo" src="{{ asset('img/send.png') }}">
+            </a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
