@@ -24,8 +24,7 @@ class UserController extends AbstractController
      * @Route(path="my_profile", name="my_profile")
      */
     public function update(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder) {
-        $user = $entityManager->getRepository(User::class)
-            ->findOneBy(['username' => $this->getUser()->getUsername()]);
+        $user = $this->getUser();
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -37,7 +36,6 @@ class UserController extends AbstractController
 //        }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
 
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -69,13 +67,13 @@ class UserController extends AbstractController
 
         $id = $request->get('id');
 
-        $outing = $entityManager->getRepository(Outing::class)->find($id);
+        $user = $entityManager->getRepository(User::class)->find($id);
 
-        if (is_null($outing)) {
+        if (is_null($user)) {
             return $this->render('error/userNotFound.html.twig');
         }
 
-        return $this->render('user/detailsProfile.html.twig', ['outing' => $outing]);
+        return $this->render('user/detailsProfile.html.twig', ['user' => $user]);
 
 
     }
