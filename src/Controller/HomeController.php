@@ -30,7 +30,7 @@ class HomeController extends AbstractController
      */
     public function home( outingRepository $outingRepository, Request $request): Response
     {
-
+        $outings = [];
         $search = new Search();
         //$search->setDateMin(new \DateTime());
         $form = $this->createForm(HomeFiltersType::class, $search);
@@ -52,7 +52,9 @@ class HomeController extends AbstractController
             }
 
         }
-        $outings = $outingRepository->findAllVisibleQuery($search,$this->getUser());
+        if(!is_null($this->getUser())) {
+            $outings = $outingRepository->findAllVisibleQuery($search, $this->getUser());
+        }
 
         return $this->render('home/home.html.twig', [
             'outings' => $outings,

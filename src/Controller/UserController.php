@@ -24,7 +24,7 @@ class UserController extends AbstractController
      * @Route(path="my_profile", name="my_profile")
      */
     public function update(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder) {
-        $user = $this->getDoctrine()->getRepository(User::class)
+        $user = $entityManager->getRepository(User::class)
             ->findOneBy(['username' => $this->getUser()->getUsername()]);
 
         $form = $this->createForm(UserType::class, $user);
