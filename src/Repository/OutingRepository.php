@@ -6,13 +6,16 @@ use App\Entity\Campus;
 use App\Entity\Outing;
 use App\Entity\Search;
 use App\Entity\User;
+use App\Entity\Inscription;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\Node\Expr\Array_;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Outing|null find($id, $lockMode = null, $lockVersion = null)
@@ -30,9 +33,10 @@ class OutingRepository extends ServiceEntityRepository
     /**
      * @return array
      */
-    public function findAllVisibleQuery(Search $search): array
+    public function findAllVisibleQuery(Search $search, User $user): array
     {
         $query = $this->createQueryBuilder('u');
+        $query ->leftJoin('u.inscriptions','i');
 
         if ($search->getName()) {
             $query = $query->andWhere('u.name like :name')->setParameter(':name', '%'.$search->getName().'%');
@@ -55,6 +59,15 @@ class OutingRepository extends ServiceEntityRepository
                     ->setParameter(':planner', $search->getPlanner()->getId());
         }
 
+        if ($search->getRegistered()) {
+            $query = $query ->andwhere('i.user = :user')
+                            ->setParameter(':user', $user);
+        }
+
+        if ($search->getNotRegistered()) {
+            $query = $query ->andWhere('i.user != :user')
+                            ->setParameter(':user', $user);
+        }
 
         return $query->getQuery()->getResult();
 

@@ -86,6 +86,11 @@ class Outing
      */
     private $place;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbOfRegistrations;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -242,6 +247,18 @@ class Outing
     public function setPlace(?Place $place): self
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getNbOfRegistrations(): ?int
+    {
+        return $this->nbOfRegistrations;
+    }
+
+    public function setNbOfRegistrations(int $nbOfRegistrations): self
+    {
+        $this->nbOfRegistrations = $nbOfRegistrations;
 
         return $this;
     }

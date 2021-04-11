@@ -29,6 +29,7 @@ class OutingController extends AbstractController
         $outing = new Outing();
         $outing->setStartingTime(new \DateTime());
         $outing->setMaxDateInscription(new \DateTime());
+        $outing->setNbOfRegistrations(0);
 
         $form = $this->createForm(OutingType::class, $outing);
 

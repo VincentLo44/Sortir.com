@@ -30,6 +30,7 @@ class HomeController extends AbstractController
      */
     public function home( outingRepository $outingRepository, Request $request): Response
     {
+
         $search = new Search();
         //$search->setDateMin(new \DateTime());
         $form = $this->createForm(HomeFiltersType::class, $search);
@@ -43,8 +44,15 @@ class HomeController extends AbstractController
                 $search->setPlanner($this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $_GET['planner']]));
             }
 
+            if (isset($_GET['registered']) && $_GET['registered'] == 'true'){
+                $search->setRegistered(true);
+            }
+            if (isset($_GET['registered']) && $_GET['registered'] == 'false'){
+                $search->setNotRegistered(true);
+            }
+
         }
-        $outings = $outingRepository->findAllVisibleQuery($search);
+        $outings = $outingRepository->findAllVisibleQuery($search,$this->getUser());
 
         return $this->render('home/home.html.twig', [
             'outings' => $outings,
