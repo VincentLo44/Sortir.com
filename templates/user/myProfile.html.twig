@@ -9,8 +9,8 @@
             Hello {{ sessionUser.username }} ! <br>
             Here, you can update your profile !
         </h1>
-
-    {{ form_start(userForm) }}
+        <form>
+            {{ form_start(userForm) }}
 
     {{ form_widget(userForm.username,
         {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
@@ -45,14 +45,19 @@
                 {{ sessionUser.campus.name }}
             </div>
             {% endif %}
+
+            <div class="mt-4 ml-2 p-2 border">
+                {{ form_row(userForm.imageFile) }}
+            </div>
+
             <div class="row mt-5 d-flex justify-content-center">
                 <button type="submit" class="btn btn-lg btn-warning">
                    Update
                 </button>
             </div>
 
-    {{ form_end(userForm) }}
-
+            {{ form_end(userForm) }}
+        </form>
 
 
 {% endblock %}
