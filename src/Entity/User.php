@@ -55,6 +55,9 @@ class User implements UserInterface
      * @Assert\Regex(
      *     pattern="/[0-9]/"
      * )
+     * @Assert\Range(
+     *     min = 10
+     * )
      */
     private $phone;
 
