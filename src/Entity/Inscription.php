@@ -4,9 +4,17 @@ namespace App\Entity;
 
 use App\Repository\InscriptionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=InscriptionRepository::class)
+ * @Table(name="inscription",
+ *    uniqueConstraints={
+ *        @UniqueConstraint(name="user_outing_unique",
+ *            columns={"user_id", "outing_id"})
+ *    })
  */
 class Inscription
 {
