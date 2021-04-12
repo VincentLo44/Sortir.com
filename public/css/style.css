@@ -24,6 +24,11 @@ header {
     height: 30px;
 }
 
+table th {
+    background-color: #ef81003b;
+
+}
+
 
 footer {
     background-color: #EF8100;
