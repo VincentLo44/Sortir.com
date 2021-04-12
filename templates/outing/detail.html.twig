@@ -60,11 +60,10 @@
     </table>
 
     <div class="row mt-5 d-flex justify-content-center">
-        <div class="mr-2">
-            <button type="submit" class="btn btn-lg btn-warning">
-                Register
-            </button>
-        </div>
+        <form class="mr-2">
+            <input type="text" name="outing" value="{{ outing.id }}" hidden>
+            <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
+        </form>
 
         <div class="mr-2">
             <button type="submit" class="btn btn-lg btn-warning">
