@@ -5,46 +5,46 @@
 {% block body %}
     <div class="col-4 py-5 mx-auto">
 
-<h1 class="h3 mb-3 font-weight-normal">
-    Hello {{ sessionUser.username }} ! <br>
-    Here, you can update your profile !
-</h1>
+        <h1 class="h3 mb-5 font-weight-normal text-center ">
+            Hello {{ sessionUser.username }} ! <br>
+            Here, you can update your profile !
+        </h1>
 
-    {{ form_start(userForm) }}
+            {{ form_start(userForm) }}
 
-    {{ form_widget(userForm.username,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
+            {{ form_widget(userForm.username,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
 
-    {{ form_widget(userForm.lastname,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
+            {{ form_widget(userForm.lastname,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
 
-    {{ form_widget(userForm.firstname,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
+            {{ form_widget(userForm.firstname,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
 
-    {{ form_widget(userForm.phone,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
+            {{ form_widget(userForm.phone,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
 
-    {{ form_widget(userForm.email,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
+            {{ form_widget(userForm.email,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
 
-    {{ form_widget(userForm.password.first,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password', 'type' : 'password', 'name' : 'password1' }}) }}
+            {{ form_widget(userForm.password.first,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password', 'type' : 'password', 'name' : 'password1' }}) }}
 
-    {{ form_widget(userForm.password.second,
-        {'attr': {'class': 'form-control m-1', 'placeholder' : 'Repeat Password', 'type' : 'password', 'name':'password2' }}) }}
+            {{ form_widget(userForm.password.second,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Repeat Password', 'type' : 'password', 'name':'password2' }}) }}
 
-    {% if sessionUser.campus %}
-    <div class="form-control m-1">
-        {{ sessionUser.campus.name }}
-    </div>
-    {% endif %}
+            {% if sessionUser.campus %}
+            <div class="form-control m-1">
+                {{ sessionUser.campus.name }}
+            </div>
+            {% endif %}
+            <div class="row mt-5 d-flex justify-content-center">
+                <button type="submit" class="btn btn-lg btn-warning">
+                   Update
+                </button>
+            </div>
 
-    <button type="submit" class="btn btn-lg btn-primary">
-       Update
-    </button>
-
-    {{ form_end(userForm) }}
-
+            {{ form_end(userForm) }}
 
 
 {% endblock %}
