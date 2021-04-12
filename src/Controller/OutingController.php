@@ -11,6 +11,7 @@ use App\Entity\OutingStatus;
 use App\Entity\Place;
 use App\Entity\User;
 use App\Form\OutingType;
+use App\Form\OutingTypeUpdate;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -93,12 +94,11 @@ class OutingController extends AbstractController
 
         $outing = $entityManager->getRepository(Outing::class)->find($id);
 
-        $form = $this->createForm(OutingType::class, $outing);
+        $form = $this->createForm(OutingTypeUpdate::class, $outing);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
 
             $entityManager->persist($outing);
             $entityManager->flush();
