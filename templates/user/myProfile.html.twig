@@ -5,10 +5,10 @@
 {% block body %}
     <div class="col-4 py-5 mx-auto">
 
-<h1 class="h3 mb-3 font-weight-normal">
-    Hello {{ sessionUser.username }} ! <br>
-    Here, you can update your profile !
-</h1>
+        <h1 class="h3 mb-5 font-weight-normal text-center ">
+            Hello {{ sessionUser.username }} ! <br>
+            Here, you can update your profile !
+        </h1>
 
     {{ form_start(userForm) }}
 
@@ -40,15 +40,16 @@
         {'attr': {'class': 'form-control m-1', 'placeholder' : 'Repeat Password', 'type' : 'password', 'name':'password2' }}) }}
     <div class="text-danger">{{ form_errors(userForm.password.second) }}</div>
 
-    {% if sessionUser.campus %}
-    <div class="form-control m-1">
-        {{ sessionUser.campus.name }}
-    </div>
-    {% endif %}
-
-    <button type="submit" class="btn btn-lg btn-primary">
-       Update
-    </button>
+            {% if sessionUser.campus %}
+            <div class="form-control m-1">
+                {{ sessionUser.campus.name }}
+            </div>
+            {% endif %}
+            <div class="row mt-5 d-flex justify-content-center">
+                <button type="submit" class="btn btn-lg btn-warning">
+                   Update
+                </button>
+            </div>
 
     {{ form_end(userForm) }}
 
