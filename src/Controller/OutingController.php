@@ -83,4 +83,38 @@ class OutingController extends AbstractController
 
         return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
+
+    /**
+     * @Route(path="update", name="update")
+     */
+    public function update(Request $request, EntityManagerInterface $entityManager) {
+
+        $id = $request->get('outing');
+
+        $outing = $entityManager->getRepository(Outing::class)->find($id);
+
+        $form = $this->createForm(OutingType::class, $outing);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $entityManager->persist($outing);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Congrats ! Your outing has been modified !');
+
+            return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+
+        }
+
+        return $this->render('outing/update.html.twig',
+            ['outing' => $outing, 'outingForm' => $form->createView(),
+                'listCampus' => $this->getDoctrine()->getRepository(Campus::class)->findAll(),
+                'listCities' => $this->getDoctrine()->getRepository(City::class)->findAll(),
+                'listPlaces' => $this->getDoctrine()->getRepository(Place::class)->findAll()
+            ]);
+
+    }
 }
