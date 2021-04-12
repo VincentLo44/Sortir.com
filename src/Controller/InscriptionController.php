@@ -32,7 +32,11 @@ class InscriptionController extends AbstractController
         $outing = $entityManager->getRepository(Outing::class)->find($_POST['outing']);
 
         if($outing->getMaxNbInscriptions() <= $outing->getNbOfRegistrations()){
-            $this->addFlash('alert', 'Too late !!! outing is fully booked !');
+            $this->addFlash('danger', 'Too late !!! Outing is fully booked !');
+
+        }
+        if($dateInscription > $outing->getMaxDateInscription()){
+            $this->addFlash('danger', 'Too late !!! Outing is finished !');
 
         }
 
