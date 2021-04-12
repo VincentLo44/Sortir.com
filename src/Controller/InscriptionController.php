@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(path="Inscription/", name="inscripton_")
+ * @Route(path="Inscription/", name="inscription_")
  */
 class InscriptionController extends AbstractController
 {
@@ -28,65 +28,41 @@ class InscriptionController extends AbstractController
      */
     public function add(Request $request, EntityManagerInterface $entityManager) {
         $inscription = new Inscription();
-        $inscription->setStatus('Registered');
-        $inscription->setDate(new \DateTime('now'));
-        $inscription->setUser($entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]));
+        $dateInscription = new \DateTime('now');
         $outing = $entityManager->getRepository(Outing::class)->find($_POST['outing']);
-        $inscription->setOuting($outing);
-//        $outing->setStartingTime(new \DateTime());
-//        $outing->setMaxDateInscription(new \DateTime());
-//        $outing->setNbOfRegistrations(0);
-//
-//        $form = $this->createForm(OutingType::class, $outing);
-//
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//
-//            $outing->setPlanner($this->getDoctrine()->getRepository(User::class)
-//                ->findOneBy(['username' => $this->getUser()->getUsername()]));
-//
-//            if(isset($_POST['campus'])) {
-//                $outing->setCampus($this->getDoctrine()->getRepository(Campus::class)
-//                    ->find($_POST['campus']));
-//            }
-//
-//            $outing->setStatus($this->getDoctrine()->getRepository(OutingStatus::class)
-//                ->findOneBy(['description'=> 'Created']));
-//
-//            if(isset($_POST['place'])) {
-//                $outing->setPlace($this->getDoctrine()->getRepository(Place::class)
-//                    ->findOneBy(['id' => $_POST['place']]));
-//            }
-//
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->persist($outing);
-//            $entityManager->flush();
-//
-//            $this->addFlash('success', 'Outing successfully added !');
-//
-//            return $this->redirectToRoute('home_home');
-//        }
-//
-//        return $this->render('outing/add.html.twig', ['outingForm' => $form->createView(),
-//            'listCampus' => $this->getDoctrine()->getRepository(Campus::class)->findAll(),
-//            'listCities' => $this->getDoctrine()->getRepository(City::class)->findAll(),
-//            'listPlaces' => $this->getDoctrine()->getRepository(Place::class)->findAll()
-//        ]);
+
+        if($outing->getMaxNbInscriptions() <= $outing->getNbOfRegistrations()){
+            $this->addFlash('alert', 'Too late !!! outing is fully booked !');
+
+        }
+
+        if($outing->getMaxNbInscriptions() > $outing->getNbOfRegistrations() && $dateInscription < $outing->getMaxDateInscription()){
+            $inscription->setStatus('Registered');
+            $inscription->setDate($dateInscription);
+            $inscription->setUser($entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]));
+            $inscription->setOuting($outing);
+            $outing->setNbOfRegistrations($outing->getNbOfRegistrations()+1);
+            $entityManager->persist($inscription);
+            $entityManager->persist($outing);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Registration done !');
+        }
+
+        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
 
     /**
      * @Route(path="detail/{id}", requirements={"id" : "\d+"}, name="detail")
      */
     public function detail(Request $request, EntityManagerInterface $entityManager) {
-//        $id = $request->get('id');
-//
-//        $outing = $entityManager->getRepository(Outing::class)->find($id);
-//
-//        if (is_null($outing)) {
-//            return $this->render('error/outingNotFound.html.twig');
-//        }
-//
-//        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+        $id = $request->get('id');
+
+        $outing = $entityManager->getRepository(Outing::class)->find($id);
+
+        if (is_null($outing)) {
+            return $this->render('error/outingNotFound.html.twig');
+        }
+        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
 }
