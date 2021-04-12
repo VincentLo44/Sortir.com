@@ -55,14 +55,16 @@
                     <option value="{{ place.id }}">{{place.name}}</option>
                 {% endfor %}
             </select>
-
-            <button type="submit" class="btn btn-lg btn-warning">
+        <div class="row mt-5 d-flex justify-content-center">
+            <button type="submit" class="btn btn-lg btn-warning mr-2">
                 Create
             </button>
-
             <a href="{{ url("home_home") }}" type="submit" class="btn btn-lg btn-warning">
                 Cancel
             </a>
+        </div>
+
+
         </div>
 
         {{ form_end(outingForm) }}
