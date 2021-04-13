@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update outing{% endblock %}
+
+{% block body %}
+
+    <div class="col-6 py-5 mx-auto">
+
+        <h1 class="h3 mb-3 font-weight-normal">
+            Update an outing !
+        </h1>
+
+        {{ form_start(outingForm) }}
+
+        {{ form_widget(outingForm.name,
+            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing name'}}) }}
+        <hr>
+
+        <div class="border p-2 ml-2">
+            <div class="col">
+                <b>Starting time</b>
+                {{ form_widget(outingForm.startingTime,
+                    {'attr': {'class': 'form-control m-1', 'type' : 'date'}}) }}
+            </div>
+            <div class="col">
+                <b>Max date inscription</b>
+                {{ form_widget(outingForm.maxDateInscription,
+                    {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max date inscription', 'type' : 'date'}}) }}
+            </div>
+            <div class="col">
+                <b>Duration</b>
+            {{ form_widget(outingForm.duration,
+                {'label': 'duration', 'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration'}}) }}
+            </div>
+            <div class="col">
+                <b>Inscription's number max</b>
+            {{ form_widget(outingForm.maxNbInscriptions,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max number inscriptions', 'min' : '1'}}) }}
+            </div>
+            <div class="col">
+                <b>Informations and details</b>
+            {{ form_widget(outingForm.outingDetails,
+                {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing details'}}) }}
+            </div>
+        </div>
+
+        <select name="campus" class="custom-select m-1">
+            <option value="{{ outing.campus.id }}">{{ outing.campus.name }}</option>
+            {% for campus in listCampus %}
+                {% if outing.campus.id != campus.id %}
+                    <option value="{{ campus.id }}">{{ campus.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <select name="city" class="custom-select m-1">
+            <option value="{{ outing.place.city.id }}">{{outing.place.city.name}}</option>
+            {% for city in listCities %}
+                {% if outing.place.city.id != city.id %}
+                    <option value="{{ city.id }}">{{city.name}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <select name="place" class="custom-select m-1">
+            <option value="{{ outing.place.id }}">{{outing.place.name}}</option>
+            {% for place in listPlaces %}
+                {% if outing.place.id != place.id %}
+                    <option value="{{ place.id }}">{{place.name}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <div class="row mt-5 d-flex justify-content-center">
+            <button type="submit" class="btn btn-lg btn-warning mr-2">
+                Update
+            </button>
+            <a href="{{ url("home_home") }}" type="submit" class="btn btn-lg btn-warning">
+                Cancel
+            </a>
+        </div>
+
+
+    </div>
+    <input type="text" name="outing" value="{{ outing.id }}" hidden>
+
+    {{ form_end(outingForm) }}
+
+{% endblock %}
+
+

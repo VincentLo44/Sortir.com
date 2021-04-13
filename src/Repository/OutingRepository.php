@@ -69,6 +69,11 @@ class OutingRepository extends ServiceEntityRepository
                             ->setParameter(':user', $user);
         }
 
+//        //inclure les sorties auxquelles je ne suis pas inscrit
+//        if (!empty($searchData['not_subscribed_to'])){
+//            $checkBoxesOr->add($qb->expr()->notIn('sub.event', $subcribedToEventIds));
+//        }
+
         return $query->getQuery()->getResult();
 
     }

@@ -7,7 +7,11 @@
 <div class="col-8 py-5 mx-auto">
 
     <h1 class="h2 mb-5 font-weight-normal text-center">
-        <strong>{{ outing.name }} outing details !</strong>
+        <b>{{ outing.name }} outing details !</b>
+        <br>
+        Proposed by <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">
+            {{ outing.planner.username }}
+        </a>
     </h1>
 
     <table class="table">
@@ -60,16 +64,15 @@
     </table>
 
     <div class="row mt-5 d-flex justify-content-center">
-        <form class="mr-2">
+        <form class="mr-2" method="post" action="{{ url('inscription_add') }}">
             <input type="text" name="outing" value="{{ outing.id }}" hidden>
             <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
         </form>
 
-        <div class="mr-2">
-            <button type="submit" class="btn btn-lg btn-warning">
-                Update
-            </button>
-        </div>
+        <form class="mr-2" method="post" action="{{ url("outing_update") }}">
+            <input type="text" name="outing" value="{{ outing.id }}" hidden>
+            <input type="submit" class="btn btn-lg btn-warning" name="Update" value="Update">
+        </form>
 
         <div class="mr-2">
             <button type="submit" class="btn btn-lg btn-warning">
