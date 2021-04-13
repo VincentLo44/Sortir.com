@@ -29,6 +29,11 @@ table th {
 
 }
 
+table img {
+    height: 30px;
+    border-radius: 20px;
+}
+
 
 footer {
     background-color: #EF8100;

@@ -3,7 +3,14 @@
 {% block title %}Profile details{% endblock %}
 
 {% block body %}
-    <div class="col-4 py-5 mx-auto">
+    <div class="col-4 pb-5 pt-3 mx-auto">
+        <div class="mb-4 d-flex justify-content-center">
+            <div class="border p-3">
+                {% if user.filename %}
+                    <img src="/images/users/{{ user.filename }}" alt="profilePic">
+                {% endif %}
+            </div>
+        </div>
         <h1 class="h2 mb-5 font-weight-normal text-center">
 
             <strong>{{ user.username }}</strong>

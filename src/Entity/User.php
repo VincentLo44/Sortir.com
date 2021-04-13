@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -19,7 +20,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email.")
  * @Vich\Uploadable()
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -399,5 +400,39 @@ class User implements UserInterface
         return $this;
     }
 
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->roles,
+            $this->password,
+            $this->lastname,
+            $this->firstname,
+            $this->phone,
+            $this->email,
+            $this->isAdmin,
+            $this->isActive,
+            $this->campus,
 
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->roles,
+            $this->password,
+            $this->lastname,
+            $this->firstname,
+            $this->phone,
+            $this->email,
+            $this->isAdmin,
+            $this->isActive,
+            $this->campus,
+            ) = unserialize($serialized);
+    }
 }
