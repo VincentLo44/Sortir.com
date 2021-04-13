@@ -37,6 +37,7 @@ class OutingRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('u');
         $query ->leftJoin('u.inscriptions','i');
+        $array =array();
 
         if ($search->getName()) {
             $query = $query->andWhere('u.name like :name')->setParameter(':name', '%'.$search->getName().'%');
@@ -65,9 +66,15 @@ class OutingRepository extends ServiceEntityRepository
         }
 
         if ($search->getNotRegistered()) {
-            $query = $query ->andWhere('i.user != :user')
-                            ->setParameter(':user', $user);
+            $outingsIRegistered = $this->getEntityManager()->getRepository(Inscription::class)->findBy(['user' => $user]);
+            foreach ($outingsIRegistered as $oIR){
+                array_push($array, $oIR->getOuting()->getId());
+            }
+
+            $query = $query ->andWhere('u.id NOT IN (:array)')
+                            ->setParameter(':array', $array);
         }
+
 
 //        //inclure les sorties auxquelles je ne suis pas inscrit
 //        if (!empty($searchData['not_subscribed_to'])){
