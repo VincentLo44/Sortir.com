@@ -52,6 +52,11 @@ class InscriptionController extends AbstractController
             }
 
             if ($outing->getMaxNbInscriptions() > $outing->getNbOfRegistrations() && $dateInscription < $outing->getMaxDateInscription()) {
+
+                if(is_null($inscription)){
+                    $inscription = new Inscription();
+                }
+
                 $inscription->setStatus('Registered');
                 $inscription->setDate($dateInscription);
                 $inscription->setUser($entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]));

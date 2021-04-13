@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Campus;
 use App\Entity\City;
+use App\Entity\Inscription;
 use App\Entity\Outing;
 use App\Entity\OutingStatus;
 use App\Entity\Place;
@@ -82,7 +83,11 @@ class OutingController extends AbstractController
             return $this->render('error/outingNotFound.html.twig');
         }
 
-        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+        $inscriptions = $entityManager->getRepository(Inscription::class)->findBy(['outing' => $outing]);
+
+        return $this->render('outing/detail.html.twig',
+                                    ['outing' => $outing,
+                                    'inscriptions' => $inscriptions]);
     }
 
     /**

@@ -26,11 +26,30 @@
             </tr>
             <tr>
                 <th scope="row">Inscription's date and hour limit</th>
-                <td>{{ outing.maxDateInscription | date }}</td>
+                <td>{{ outing.maxDateInscription | date }}
+                    {% if outing.maxDateInscription < date() %}
+                        <b class="ml-2">Registrations are closed for this outing : please contact the
+                            <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">planner</a>
+                        for more informations</b>
+                    {% elseif outing.startingTime < date()%}
+                        <b class="ml-2">TOO LATE</b>
+                    {% endif %}
+
+                </td>
             </tr>
             <tr>
                 <th scope="row">Max number of registrations</th>
-                <td>{{ outing.maxNbInscriptions }} places</td>
+                <td>{{ outing.maxNbInscriptions }} places
+                    <b>
+                        {% if outing.startingTime > date() %}
+                            ({{ outing.maxNbInscriptions - outing.nbOfRegistrations }} registrations left)</b>
+                        {% if outing.nbOfRegistrations >= outing.maxNbInscriptions %}
+                            <b class="ml-2">Outing is fully booked : please contact the
+                                <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">planner</a>
+                                for more informations</b>
+                        {% endif %}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th scope="row">Description and informations</th>
@@ -63,29 +82,66 @@
         </tbody>
     </table>
 
-    <div class="row mt-5 d-flex justify-content-center">
-        <form class="mr-2" method="post" action="{{ url('inscription_add') }}">
-            <input type="text" name="outing" value="{{ outing.id }}" hidden>
-            <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
-        </form>
 
+    <div class="row mt-5 d-flex justify-content-center">
+        {% if outing.maxDateInscription > date() or outing.nbOfRegistrations >= outing.maxNbInscriptions %}
+            <form class="mr-2" method="post" action="{{ url('inscription_add') }}">
+                <input type="text" name="outing" value="{{ outing.id }}" hidden>
+                <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
+            </form>
+        {% endif %}
+        {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
         <form class="mr-2" method="post" action="{{ url("outing_update") }}">
             <input type="text" name="outing" value="{{ outing.id }}" hidden>
             <input type="submit" class="btn btn-lg btn-warning" name="Update" value="Update">
         </form>
+        {% endif %}
 
+        {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
         <div class="mr-2">
             <button type="submit" class="btn btn-lg btn-warning">
                 Publish
             </button>
         </div>
-
+        {% endif %}
         <div class="mr-2">
             <a href="{{ url("home_home") }}" class="btn btn-lg btn-warning">
                 Back to home
             </a>
         </div>
     </div>
+
+    <hr>
+
+    <h1 class="h3 mb-2 font-weight-normal text-center">Who's in ?</h1>
+
+    {% if inscriptions is defined and inscriptions is not empty %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for inscr in inscriptions %}
+            <tr>
+                <td width="200">
+                    <a href="{{ url('user_details_profile',{ "id": inscr.user.id }) }}">
+                    {{ inscr.user.username }}
+                    </a>
+                </td>
+                <td width="200">{{ inscr.user.firstname }} {{ inscr.user.lastname }}</td>
+                </td>
+
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    {% else  %}
+        <h1 class="h4 mb-2 font-weight-normal text-center">Be the first in and Register !</h1>
+    {% endif %}
+
 </div>
 
 {% endblock %}
