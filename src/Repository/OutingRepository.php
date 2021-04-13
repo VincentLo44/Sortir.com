@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Campus;
 use App\Entity\Outing;
+use App\Entity\OutingStatus;
 use App\Entity\Search;
 use App\Entity\User;
 use App\Entity\Inscription;
@@ -75,18 +76,12 @@ class OutingRepository extends ServiceEntityRepository
                             ->setParameter(':array', $array);
         }
 
-
-//        //inclure les sorties auxquelles je ne suis pas inscrit
-//        if (!empty($searchData['not_subscribed_to'])){
-//            $checkBoxesOr->add($qb->expr()->notIn('sub.event', $subcribedToEventIds));
-//        }
+        $query = $query ->andWhere('u.status NOT IN (:status)')
+            ->setParameter(':status', $this->getEntityManager()->getRepository(OutingStatus::class)->findBy(['description' => "Closed"]));
 
         return $query->getQuery()->getResult();
 
     }
-
-
-
 
     /*
     public function findOneBySomeField($value): ?Outing
