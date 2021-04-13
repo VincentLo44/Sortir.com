@@ -94,7 +94,6 @@ class OutingController extends AbstractController
     //        }
     //    }
 
-        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
         $inscriptions = $entityManager->getRepository(Inscription::class)->findBy(['outing' => $outing]);
 
         return $this->render('outing/detail.html.twig',
