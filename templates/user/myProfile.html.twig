@@ -11,11 +11,9 @@
             {% endif %}
         </div>
     </div>
-        <h1 class="h3 mb-5 font-weight-normal text-center ">
-            Hello {{ sessionUser.username }} ! <br>
-            Here, you can update your profile !
+        <h1 class="h3 mb-4 font-weight-normal text-center ">
+            {{ sessionUser.username }}
         </h1>
-
 
             {{ form_start(userForm) }}
 
@@ -54,7 +52,8 @@
             {% endif %}
 
             <div class="mt-4 ml-2 p-2 border">
-                {{ form_row(userForm.imageFile) }}
+                <label>Add or change your profile picture :</label>
+                {{ form_widget(userForm.imageFile) }}
             </div>
 
             <div class="row mt-5 d-flex justify-content-center">

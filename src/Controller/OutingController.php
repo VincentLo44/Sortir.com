@@ -14,6 +14,7 @@ use App\Form\OutingType;
 use App\Form\OutingTypeUpdate;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -82,8 +83,20 @@ class OutingController extends AbstractController
             return $this->render('error/outingNotFound.html.twig');
         }
 
+    //    $participants = $outing->
+
+        //Test si l'utilisateur est déjà inscrit ou non
+    //    $subOrNot = false;
+    //    foreach ($participants as $participant) {
+    //        if ($this->getUser() == $participant) {
+    //            $subOrNot = true;
+    //        }
+    //    }
+
         return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
+
+
 
     /**
      * @Route(path="update", name="update")

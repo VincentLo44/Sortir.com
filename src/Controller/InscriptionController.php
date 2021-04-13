@@ -14,6 +14,7 @@ use App\Entity\User;
 use App\Form\OutingType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -67,4 +68,31 @@ class InscriptionController extends AbstractController
 
         return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
+
+
+    /**
+     * @Route(path="unsubscribe", name="unsubscribe")
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function unsubToOuting(EntityManagerInterface $entityManager, Request $request): RedirectResponse
+    {
+
+        $outing = $entityManager->getRepository(Outing::class)->findOneBy(['id' => $request->get('outing')]);
+        $user = $entityManager->getRepository(User::class)->findOneBy(['username'=>$this->getUser()->getUsername()]);
+        $inscription = $entityManager->getRepository(Inscription::class)->findOneBy(['user' => $user, 'outing' => $outing]);
+
+        $inscription->setStatus('Cancelled');
+        $outing->setNbOfRegistrations($outing->getNbOfRegistrations() - 1);
+
+        $entityManager->persist($inscription);
+        $entityManager->persist($outing);
+        $entityManager->flush();
+        $this->addFlash('success', 'You are no longer registered in this outing');
+
+        return $this->redirectToRoute('outing_detail');
+    }
+
+
 }
