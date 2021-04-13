@@ -55,3 +55,14 @@ footer {
     background-color: #EF8100;
     color: #FFFFFF;
 }
+
+.pic-profile-box{
+    height: 160px;
+    width: 160px;
+}
+
+.pic-profile{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
