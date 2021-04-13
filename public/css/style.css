@@ -46,8 +46,10 @@ table th {
 
 #picPlanner {
     height: 42px;
+    width: 42px;
     border-radius: 35px;
     margin-right: 5px;
+    object-fit: cover;
 }
 
 
