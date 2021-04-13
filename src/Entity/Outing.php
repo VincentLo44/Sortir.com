@@ -27,20 +27,22 @@ class Outing
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Range(
-     *      min = "now",
-     *      notInRangeMessage = "Nobody can travel to the past ;)"
-     * )
+     * @Assert\GreaterThan("today", message="Choose a valid date because nobody can travel in the past ;)")
      */
     private $startingTime;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
+     * @Assert\Range(min = 30)
      */
     private $duration;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Expression(
+     *     "this.getMaxDateInscription() < this.getStartingTime()",
+     *     message="Inscription's max date cannot be superior than outing's starting time"
+     * )
      */
     private $maxDateInscription;
 

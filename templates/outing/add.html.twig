@@ -19,18 +19,23 @@
                     Starting time
                     {{ form_widget(outingForm.startingTime,
                         {'attr': {'class': 'form-control m-1', 'type' : 'date'}}) }}
+                    <div class="text-danger">{{ form_errors(outingForm.startingTime) }}</div>
                 </div>
                 <div class="col">
                     Max date inscription
                     {{ form_widget(outingForm.maxDateInscription,
                         {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max date inscription', 'type' : 'date'}}) }}
+                    <div class="text-danger">{{ form_errors(outingForm.maxDateInscription) }}</div>
                 </div>
             </div>
                 {{ form_widget(outingForm.duration,
-                    {'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration'}}) }}
+                    {'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration (in minutes)', 'min' : '30',
+                        'step' : '30'}}) }}
+                <div class="text-danger">{{ form_errors(outingForm.duration) }}</div>
 
                 {{ form_widget(outingForm.maxNbInscriptions,
                     {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max number inscriptions', 'min' : '1'}}) }}
+                <div class="text-danger">{{ form_errors(outingForm.maxNbInscriptions) }}</div>
 
                 {{ form_widget(outingForm.outingDetails,
                     {'attr': {'class': 'form-control m-1', 'placeholder' : 'Outing details'}}) }}
@@ -55,6 +60,7 @@
                     <option value="{{ place.id }}">{{place.name}}</option>
                 {% endfor %}
             </select>
+
         <div class="row mt-5 d-flex justify-content-center">
             <button type="submit" class="btn btn-lg btn-warning mr-2">
                 Create

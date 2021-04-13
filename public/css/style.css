@@ -11,8 +11,23 @@ header {
     background-color: #EF8100;
 }
 
+h3 {
+    font-size: 18px;
+}
+
 #menu {
     font-size: 15px;
+}
+
+.line-warning {
+    background-color: #EF8100;
+    padding: 1%;
+}
+
+#plan {
+    font-size: 18px;
+    font-weight: initial;
+    text-transform: none;
 }
 
 
