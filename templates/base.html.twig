@@ -74,12 +74,9 @@
             {% endfor %}
         {% endfor %}
 
-        <div class="jumbotron container-fluid p-2 mb-0">
+        <div class="jumbotron container-fluid p-0 mb-0">
             <div class="row">
-                <div class="col-8 mx-auto">
-                    <h1 class="display-4">{% block pageName %}{% endblock %}</h1>
-                    <p class="lead">{% block pageDescription %}{% endblock %}</p>
-                </div>
+                {% block home %}{% endblock %}
             </div>
         </div>
 

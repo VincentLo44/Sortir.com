@@ -2,17 +2,25 @@
 
 {% block title %} Home {% endblock %}
 
-{% block pageName %}Home{% endblock %}
-{% block pageDescription %}
-    <h2>Welcome on Sortir.com</h2>
-    <hr class="my-1">
-    <p>Here start the fun with ENI !!!</p>
-    <p class="lead">
-        {% if app.user %}
-        {% else %}
-        <a class="btn btn-warning btn-lg" href="{{ url('app_login') }}" role="button">Login</a>
-        {%  endif %}
-    </p>
+{% block home %}
+    {% if app.user %}
+        <div>
+            <img src="{{ asset('img/moose-bg.jpg') }}" alt="moose-background" width="100%">
+        </div>
+    {% else %}
+        <div class="col-8 mx-auto">
+            <div class="py-3 pb-5">
+                <h1>Welcome on Sortir.com</h1>
+                <hr class="my-1">
+                <p>Here start the fun with ENI !!!</p>
+                <p class="lead">
+                    <a class="btn btn-warning btn-lg" href="{{ url('app_login') }}" role="button">
+                        Login
+                    </a>
+                </p>
+            </div>
+        </div>
+    {%  endif %}
 {% endblock %}
 
 {% block body%}
@@ -96,10 +104,10 @@
                                 <td width="200">{{ outing.startingTime|date('d/m/Y à H:i') }}</td>
                                 <td width="200">{{ outing.maxDateInscription|date('d/m/Y à H:i') }}</td>
                                 <td width="200">{{ outing.campus.name}}</td>
-                                <td width="200">
+                                <td width="200" class="pt-1">
                                     <a href="{{ url('user_details_profile',{ "id": outing.planner.id }) }}">
                                         {% if outing.planner.filename %}
-                                            <img src="/images/users/{{ outing.planner.filename }}" alt="profilePic">
+                                            <img src="/images/users/{{ outing.planner.filename }}" alt="profilePic" id="picPlanner">
                                         {% endif %}
                                         {{ outing.planner.username }}
                                     </a>

@@ -29,9 +29,10 @@ table th {
 
 }
 
-table img {
-    height: 30px;
-    border-radius: 20px;
+#picPlanner {
+    height: 42px;
+    border-radius: 35px;
+    margin-right: 5px;
 }
 
 
