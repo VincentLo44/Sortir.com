@@ -39,13 +39,12 @@ class InscriptionController extends AbstractController
                 'outing' => $outing
             ]);
 
-        if (!is_null($inscription) && !empty($inscription)) {
+        if ((!is_null($inscription) && !empty($inscription)) && ($inscription->getStatus()=="Registered" || $inscription->getStatus()=="Archived")) {
             $this->addFlash('danger', 'You are already registered on this outing !');
         } else {
 
             if ($outing->getMaxNbInscriptions() <= $outing->getNbOfRegistrations()) {
                 $this->addFlash('danger', 'Too late !!! Outing is fully booked !');
-
             }
             if ($dateInscription > $outing->getMaxDateInscription()) {
                 $this->addFlash('danger', 'Too late !!! Outing is finished !');
