@@ -21,22 +21,30 @@
                 <b>Starting time</b>
                 {{ form_widget(outingForm.startingTime,
                     {'attr': {'class': 'form-control m-1', 'type' : 'date'}}) }}
+                <div class="text-danger">{{ form_errors(outingForm.startingTime) }}</div>
             </div>
+
             <div class="col">
                 <b>Max date inscription</b>
                 {{ form_widget(outingForm.maxDateInscription,
                     {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max date inscription', 'type' : 'date'}}) }}
+                <div class="text-danger">{{ form_errors(outingForm.maxDateInscription) }}</div>
             </div>
+
             <div class="col">
-                <b>Duration</b>
+                <b>Duration</b>(in minutes)
             {{ form_widget(outingForm.duration,
                 {'label': 'duration', 'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration'}}) }}
+                <div class="text-danger">{{ form_errors(outingForm.duration) }}</div>
             </div>
+
             <div class="col">
                 <b>Inscription's number max</b>
             {{ form_widget(outingForm.maxNbInscriptions,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Max number inscriptions', 'min' : '1'}}) }}
+                <div class="text-danger">{{ form_errors(outingForm.maxNbInscriptions) }}</div>
             </div>
+
             <div class="col">
                 <b>Informations and details</b>
             {{ form_widget(outingForm.outingDetails,
