@@ -26,47 +26,46 @@ class InscriptionController extends AbstractController
     /**
      * @Route(path="add", name="add")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager) {
-        $inscription = new Inscription();
+    public function add(Request $request, EntityManagerInterface $entityManager)
+    {
+
+        $user = $entityManager->getRepository(User::class)
+            ->findOneBy(['username' => $this->getUser()->getUsername()]);
         $dateInscription = new \DateTime('now');
         $outing = $entityManager->getRepository(Outing::class)->find($_POST['outing']);
+        $inscription = $entityManager->getRepository(Inscription::class)
+            ->findOneBy([
+                'user' => $user,
+                'outing' => $outing
+            ]);
 
-        if($outing->getMaxNbInscriptions() <= $outing->getNbOfRegistrations()){
-            $this->addFlash('danger', 'Too late !!! Outing is fully booked !');
+        if (!is_null($inscription) && !empty($inscription)) {
+            $this->addFlash('danger', 'You are already registered on this outing !');
+        } else {
 
+            if ($outing->getMaxNbInscriptions() <= $outing->getNbOfRegistrations()) {
+                $this->addFlash('danger', 'Too late !!! Outing is fully booked !');
+
+            }
+            if ($dateInscription > $outing->getMaxDateInscription()) {
+                $this->addFlash('danger', 'Too late !!! Outing is finished !');
+
+            }
+
+            if ($outing->getMaxNbInscriptions() > $outing->getNbOfRegistrations() && $dateInscription < $outing->getMaxDateInscription()) {
+                $inscription->setStatus('Registered');
+                $inscription->setDate($dateInscription);
+                $inscription->setUser($entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]));
+                $inscription->setOuting($outing);
+                $outing->setNbOfRegistrations($outing->getNbOfRegistrations() + 1);
+                $entityManager->persist($inscription);
+                $entityManager->persist($outing);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Registration done !');
+            }
         }
-        if($dateInscription > $outing->getMaxDateInscription()){
-            $this->addFlash('danger', 'Too late !!! Outing is finished !');
 
-        }
-
-        if($outing->getMaxNbInscriptions() > $outing->getNbOfRegistrations() && $dateInscription < $outing->getMaxDateInscription()){
-            $inscription->setStatus('Registered');
-            $inscription->setDate($dateInscription);
-            $inscription->setUser($entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]));
-            $inscription->setOuting($outing);
-            $outing->setNbOfRegistrations($outing->getNbOfRegistrations()+1);
-            $entityManager->persist($inscription);
-            $entityManager->persist($outing);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Registration done !');
-        }
-
-        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
-    }
-
-    /**
-     * @Route(path="detail/{id}", requirements={"id" : "\d+"}, name="detail")
-     */
-    public function detail(Request $request, EntityManagerInterface $entityManager) {
-        $id = $request->get('id');
-
-        $outing = $entityManager->getRepository(Outing::class)->find($id);
-
-        if (is_null($outing)) {
-            return $this->render('error/outingNotFound.html.twig');
-        }
         return $this->render('outing/detail.html.twig', ['outing' => $outing]);
     }
 }
