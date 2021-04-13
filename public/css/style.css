@@ -44,6 +44,10 @@ table th {
 
 }
 
+#none {
+    color: #b8b8b8;
+}
+
 #picPlanner {
     height: 42px;
     width: 42px;
