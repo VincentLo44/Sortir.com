@@ -85,7 +85,7 @@ class OutingRepository extends ServiceEntityRepository
         }
 
         $query = $query ->andWhere('u.status IN (:status)')
-            ->setParameter(':status', $arrayOutingStatusName);
+                        ->setParameter(':status', $arrayOutingStatusName);
 
         return $query->getQuery()->getResult();
 
