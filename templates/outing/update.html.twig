@@ -32,9 +32,10 @@
             </div>
 
             <div class="col">
-                <b>Duration</b>(in minutes)
+                <b>Duration</b> <i>(in minutes)</i>
             {{ form_widget(outingForm.duration,
-                {'label': 'duration', 'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration'}}) }}
+                {'label': 'duration', 'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration', 'min' : '30',
+                    'step' : '30'}}) }}
                 <div class="text-danger">{{ form_errors(outingForm.duration) }}</div>
             </div>
 

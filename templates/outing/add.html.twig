@@ -29,7 +29,8 @@
                 </div>
             </div>
                 {{ form_widget(outingForm.duration,
-                    {'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration (in minutes)'}}) }}
+                    {'attr': {'class': 'form-control m-1', 'placeholder' : 'Duration (in minutes)', 'min' : '30',
+                        'step' : '30'}}) }}
                 <div class="text-danger">{{ form_errors(outingForm.duration) }}</div>
 
                 {{ form_widget(outingForm.maxNbInscriptions,
