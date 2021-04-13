@@ -98,6 +98,9 @@
                                 <td width="200">{{ outing.campus.name}}</td>
                                 <td width="200">
                                     <a href="{{ url('user_details_profile',{ "id": outing.planner.id }) }}">
+                                        {% if outing.planner.filename %}
+                                            <img src="/images/users/{{ outing.planner.filename }}" alt="profilePic">
+                                        {% endif %}
                                         {{ outing.planner.username }}
                                     </a>
                                 </td>

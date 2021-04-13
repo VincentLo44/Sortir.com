@@ -32,7 +32,6 @@ class HomeController extends AbstractController
     {
         $outings = [];
         $search = new Search();
-        //$search->setDateMin(new \DateTime());
         $form = $this->createForm(HomeFiltersType::class, $search);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,6 +45,7 @@ class HomeController extends AbstractController
 
             if (isset($_GET['registered']) && $_GET['registered'] == 'true'){
                 $search->setRegistered(true);
+
             }
             if (isset($_GET['registered']) && $_GET['registered'] == 'false'){
                 $search->setNotRegistered(true);
