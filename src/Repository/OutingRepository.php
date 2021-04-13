@@ -37,8 +37,9 @@ class OutingRepository extends ServiceEntityRepository
     public function findAllVisibleQuery(Search $search, User $user): array
     {
         $query = $this->createQueryBuilder('u');
-        $query ->leftJoin('u.inscriptions','i');
-        $array =array();
+        $query  ->leftJoin('u.inscriptions','i');
+        $arrayOutingId =array();
+        $arrayOutingStatusName =array();
 
         if ($search->getName()) {
             $query = $query->andWhere('u.name like :name')->setParameter(':name', '%'.$search->getName().'%');
@@ -69,15 +70,22 @@ class OutingRepository extends ServiceEntityRepository
         if ($search->getNotRegistered()) {
             $outingsIRegistered = $this->getEntityManager()->getRepository(Inscription::class)->findBy(['user' => $user]);
             foreach ($outingsIRegistered as $oIR){
-                array_push($array, $oIR->getOuting()->getId());
+                array_push($arrayOutingId, $oIR->getOuting()->getId());
             }
 
             $query = $query ->andWhere('u.id NOT IN (:array)')
-                            ->setParameter(':array', $array);
+                            ->setParameter(':array', $arrayOutingId);
         }
 
-        $query = $query ->andWhere('u.status NOT IN (:status)')
-            ->setParameter(':status', $this->getEntityManager()->getRepository(OutingStatus::class)->findBy(['description' => "Closed"]));
+        $outingStatus = $this->getEntityManager()->getRepository(OutingStatus::class)->findAll();
+        foreach ($outingStatus as $oSN){
+            if ($oSN->getDescription() != "Closed" && $oSN->getDescription() != "Created") {
+                array_push($arrayOutingStatusName, $oSN);
+            }
+        }
+
+        $query = $query ->andWhere('u.status IN (:status)')
+            ->setParameter(':status', $arrayOutingStatusName);
 
         return $query->getQuery()->getResult();
 
