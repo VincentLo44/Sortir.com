@@ -32,7 +32,7 @@ class Outing
     private $startingTime;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      * @Assert\Range(min = 30)
      */
     private $duration;

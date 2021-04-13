@@ -46,12 +46,25 @@ table th {
 
 #picPlanner {
     height: 42px;
+    width: 42px;
     border-radius: 35px;
     margin-right: 5px;
+    object-fit: cover;
 }
 
 
 footer {
     background-color: #EF8100;
     color: #FFFFFF;
+}
+
+.pic-profile-box{
+    height: 160px;
+    width: 160px;
+}
+
+.pic-profile{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }

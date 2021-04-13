@@ -5,9 +5,9 @@
 {% block body %}
     <div class="col-4 pb-5 pt-3 mx-auto">
         <div class="mb-4 d-flex justify-content-center">
-            <div class="border p-3">
+            <div class="pic-profile-box border p-1">
                 {% if user.filename %}
-                    <img src="/images/users/{{ user.filename }}" alt="profilePic">
+                    <img class="pic-profile" src="/images/users/{{ user.filename }}" alt="profilePic">
                 {% endif %}
             </div>
         </div>
