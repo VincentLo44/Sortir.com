@@ -33,7 +33,7 @@ class OutingController extends AbstractController
         $outing = new Outing();
         $outing->setStartingTime(new \DateTime());
         $outing->setMaxDateInscription(new \DateTime());
-        $outing->setNbOfRegistrations(0);
+        $outing->setNbOfRegistrations(1);
 
         $form = $this->createForm(OutingType::class, $outing);
 
@@ -57,13 +57,24 @@ class OutingController extends AbstractController
                     ->findOneBy(['id' => $_POST['place']]));
             }
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($outing);
+
+            $entityManager->flush();
+            dump($outing);
+
+            $inscription = new Inscription();
+            $inscription->setStatus('Registered');
+            $inscription->setDate(new \DateTime());
+            $inscription->setUser($entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]));
+            $inscription->setOuting($outing);
+
+            $entityManager->persist($inscription);
+
             $entityManager->flush();
 
             $this->addFlash('success', 'Outing successfully added !');
 
-            return $this->redirectToRoute('home_home');
+            return $this->redirectToRoute('outing_detail',['id' => $outing->getId()]);
         }
 
         return $this->render('outing/add.html.twig', ['outingForm' => $form->createView(),
