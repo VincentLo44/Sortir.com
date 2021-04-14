@@ -92,26 +92,35 @@ class OutingController extends AbstractController
             return new Response($content, 404);
         }
 
-        //$outing = $entityManager->getRepository(Outing::class)->findOneBy(['id' => $request->get('outing')]);
-        //$user = $entityManager->getRepository(User::class)->findOneBy(['username'=>$this->getUser()->getUsername()]);
-        //$inscription = $entityManager->getRepository(Inscription::class)->findOneBy(['user' => $user, 'outing' => $outing]);
-        //$status = $inscription->getStatus();
-        //$sub = false;
 
-        //if ($inscription =! null && $status = 'Registered') {
-        //    $sub = true;
-        //}
+        $user = $entityManager->getRepository(User::class)->findOneBy(['username'=>$this->getUser()->getUsername()]);
+        $inscription = $entityManager->getRepository(Inscription::class)->findOneBy(['user' => $user, 'outing' => $outing]);
+        $sub = false;
+
+        if (!is_null($inscription) && $inscription->getStatus() == 'Registered') {
+            $sub = true;
+        }
+
         // find one by user et outing en parametres outing et user connecté
         // si diff de null et si status de l'inscription est  registered alors il est inscrit
         // sinon déjà false
         // si true rentre dans le if
 
 
-        $inscriptions = $entityManager->getRepository(Inscription::class)->findBy(['outing' => $outing]);
+        $listeInscriptions = $entityManager->getRepository(Inscription::class)->findBy(['outing' => $outing]);
+        $inscriptions = [];
+
+        foreach ($listeInscriptions as $inscrip) {
+            if ($inscrip->getStatus() == 'Registered') {
+                array_push($inscriptions, $inscrip);
+            }
+        }
 
         return $this->render('outing/detail.html.twig',
                                     ['outing' => $outing,
-                                    'inscriptions' => $inscriptions]);
+                                    'inscriptions' => $inscriptions,
+                                        'sub' => $sub
+                                    ]);
     }
 
     /**

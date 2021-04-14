@@ -7,23 +7,20 @@
 <div class="col-8 py-4 mx-auto">
 
     <div class="row mb-5 d-flex justify-content-center">
-        {% if outing.maxDateInscription > date() or outing.nbOfRegistrations >= outing.maxNbInscriptions %}
+        {% if sub %}
+            <form class="mr-2" method="post" action="{{ url('inscription_unsubscribe') }}">
+                <input type="text" name="outing" value="{{ outing.id }}" hidden>
+                <input type="submit" class="btn btn-lg btn-warning" name="Unsubscribe" value="Unsubscribe">
+            </form>
+        {%  elseif outing.maxDateInscription > date() or outing.nbOfRegistrations >= outing.maxNbInscriptions %}
+
             <form class="mr-2" method="post" action="{{ url('inscription_add') }}">
                 <input type="text" name="outing" value="{{ outing.id }}" hidden>
                 <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
             </form>
         {% endif %}
+
         {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
-
-            <form class="mr-2" method="post" action="{{ url('inscription_add') }}">
-                <input type="text" name="outing" value="{{ outing.id }}" hidden>
-                <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
-            </form>
-
-            <form class="mr-2" method="post" action="{{ url('inscription_unsubscribe') }}">
-                <input type="text" name="outing" value="{{ outing.id }}" hidden>
-                <input type="submit" class="btn btn-lg btn-warning" name="Unsubscribe" value="Unsubscribe">
-            </form>
 
             <form class="mr-2" method="post" action="{{ url("outing_update") }}">
                 <input type="text" name="outing" value="{{ outing.id }}" hidden>
@@ -38,6 +35,8 @@
                 </button>
             </div>
         {% endif %}
+
+
 
         <div class="mr-2">
             <a href="{{ url("home_home") }}" class="btn btn-lg btn-warning">
