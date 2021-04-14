@@ -10,7 +10,6 @@ use App\Entity\User;
 use App\Form\HomeFiltersType;
 use App\Repository\CampusRepository;
 use App\Repository\OutingRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +28,9 @@ class HomeController extends AbstractController
      * @Route(path="", name="home")
      * @return Response
      */
-    public function home(userRepository $userRepository, outingRepository $outingRepository, Request $request): Response
+    public function home( outingRepository $outingRepository, Request $request): Response
     {
         $outings = [];
-        $user = $userRepository->findOneBy(['username' => $this->getUser()->getUsername()]);
         $search = new Search();
         $form = $this->createForm(HomeFiltersType::class, $search);
         $form->handleRequest($request);
@@ -54,8 +52,8 @@ class HomeController extends AbstractController
             }
 
         }
-        if(!is_null($user)) {
-            $outings = $outingRepository->findAllVisibleQuery($search, $user);
+        if(!is_null($this->getUser())) {
+            $outings = $outingRepository->findAllVisibleQuery($search, $this->getUser());
         }
 
         return $this->render('home/home.html.twig', [

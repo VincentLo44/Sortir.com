@@ -164,4 +164,15 @@ class OutingController extends AbstractController
     public function cancel() {
 
     }
+
+    /**
+     * @Route(path="myOutings", name="my_outings")
+     */
+    public function myOutings(Request $request, EntityManagerInterface $entityManager){
+
+        $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]);
+        $outings = $entityManager->getRepository(Outing::class)->findBy(['planner' => $user]);
+
+        return $this->render("outing/myOutings.html.twig",['outings' => $outings]);
+    }
 }
