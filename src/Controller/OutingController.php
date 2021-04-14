@@ -11,11 +11,11 @@ use App\Entity\Outing;
 use App\Entity\OutingStatus;
 use App\Entity\Place;
 use App\Entity\User;
+use App\Form\OutingCancellationType;
 use App\Form\OutingType;
 use App\Form\OutingTypeUpdate;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -143,9 +143,29 @@ class OutingController extends AbstractController
     }
 
     /**
-     * @Route(path="cancel", name="cancel")
+     * @Route(path="cancel/confirmation", name="cancel_confirmation")
      */
-    public function cancel() {
+    public function cancelConfirmation(EntityManagerInterface $entityManager, Request $request) {
+
+        $outing = $entityManager->getRepository(Outing::class)->find($request->get('outing'));
+
+        $form = $this->createForm(OutingCancellationType::class, $outing);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($outing);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Congrats ! Your outing has been modified !');
+
+            return $this->redirectToRoute('outing_detail', ['id' => $outing->getId()]);
+        }
+
+        return $this->render('outing/cancel.html.twig',
+            ['outing' => $outing, 'outingCancellationForm' => $form->createView()]);
 
     }
+
 }

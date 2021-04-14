@@ -15,11 +15,6 @@
         {% endif %}
         {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
 
-            <form class="mr-2" method="post" action="{{ url('inscription_add') }}">
-                <input type="text" name="outing" value="{{ outing.id }}" hidden>
-                <input type="submit" class="btn btn-lg btn-warning" name="Register" value="Register">
-            </form>
-
             <form class="mr-2" method="post" action="{{ url('inscription_unsubscribe') }}">
                 <input type="text" name="outing" value="{{ outing.id }}" hidden>
                 <input type="submit" class="btn btn-lg btn-warning" name="Unsubscribe" value="Unsubscribe">

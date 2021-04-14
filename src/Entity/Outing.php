@@ -93,6 +93,11 @@ class Outing
      */
     private $nbOfRegistrations;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cancelReason;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -261,6 +266,18 @@ class Outing
     public function setNbOfRegistrations(int $nbOfRegistrations): self
     {
         $this->nbOfRegistrations = $nbOfRegistrations;
+
+        return $this;
+    }
+
+    public function getCancelReason(): ?string
+    {
+        return $this->cancelReason;
+    }
+
+    public function setCancelReason(?string $cancelReason): self
+    {
+        $this->cancelReason = $cancelReason;
 
         return $this;
     }

@@ -84,16 +84,19 @@
             <button type="submit" class="btn btn-lg btn-warning mr-2">
                 Update
             </button>
-            <a href="{{ url("home_home") }}" type="submit" class="btn btn-lg btn-warning">
-                Cancel
+            {{ form_end(outingForm) }}
+
+            <form action="{{ url('outing_cancel_confirmation') }}" method="get" >
+                <input type="text" name="outing" value="{{ outing.id }}" hidden>
+                <input type="submit" class="btn btn-lg btn-warning mr-2" value="Cancel the outing"/>
+            </form>
+
+            <a href="{{ url("home_home") }}" type="submit" class="btn btn-lg btn-warning mr-2">
+                Back to home
             </a>
         </div>
 
-
     </div>
-    <input type="text" name="outing" value="{{ outing.id }}" hidden>
-
-    {{ form_end(outingForm) }}
 
 {% endblock %}
 
