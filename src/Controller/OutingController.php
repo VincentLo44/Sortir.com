@@ -92,15 +92,20 @@ class OutingController extends AbstractController
             return new Response($content, 404);
         }
 
-    //    $participants = $outing->
+        //$outing = $entityManager->getRepository(Outing::class)->findOneBy(['id' => $request->get('outing')]);
+        //$user = $entityManager->getRepository(User::class)->findOneBy(['username'=>$this->getUser()->getUsername()]);
+        //$inscription = $entityManager->getRepository(Inscription::class)->findOneBy(['user' => $user, 'outing' => $outing]);
+        //$status = $inscription->getStatus();
+        //$sub = false;
 
-        //Test si l'utilisateur est déjà inscrit ou non
-    //    $subOrNot = false;
-    //    foreach ($participants as $participant) {
-    //        if ($this->getUser() == $participant) {
-    //            $subOrNot = true;
-    //        }
-    //    }
+        //if ($inscription =! null && $status = 'Registered') {
+        //    $sub = true;
+        //}
+        // find one by user et outing en parametres outing et user connecté
+        // si diff de null et si status de l'inscription est  registered alors il est inscrit
+        // sinon déjà false
+        // si true rentre dans le if
+
 
         $inscriptions = $entityManager->getRepository(Inscription::class)->findBy(['outing' => $outing]);
 
