@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Place index{% endblock %}
+
+{% block body %}
+<div class="col-6 py-4 mx-auto text-center">
+    <div class="mb-4">
+        <h1>Place index</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Longitude</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for place in places %}
+                <tr>
+                    <td>{{ place.name }}</td>
+                    <td>{{ place.address }}</td>
+                    <td>{{ place.latitude }}</td>
+                    <td>{{ place.longitude }}</td>
+                    <td>
+                        <a class="mx-1" href="{{ path('place_show', {'id': place.id}) }}">show</a>
+                        <a class="mx-1" href="{{ path('place_edit', {'id': place.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No places found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-warning" href="{{ path('place_new') }}">Create new</a>
+    </div>
+</div>
+{% endblock %}

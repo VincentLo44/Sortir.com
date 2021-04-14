@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Place{% endblock %}
+
+{% block body %}
+<div class="col-4 pb-5 pt-3 mx-auto">
+    <h1 class="mb-4 font-weight-normal text-center">Create new Place</h1>
+
+    {{ include('place/_form.html.twig') }}
+
+{% endblock %}
