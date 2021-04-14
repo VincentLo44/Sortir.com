@@ -27,11 +27,10 @@
         {% endif %}
 
         {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
-            <div class="mr-2">
-                <button type="submit" class="btn btn-lg btn-warning">
-                    Publish
-                </button>
-            </div>
+            <form class="mr-2" method="post" action="{{ url("outing_publish") }}">
+                <input type="text" name="outing" value="{{ outing.id }}" hidden>
+                <input type="submit" class="btn btn-lg btn-warning" name="Publish" value="Publish">
+            </form>
         {% endif %}
 
         <div class="mr-2">

@@ -32,6 +32,8 @@
                                     <a class="dropdown-item" href="{{ url("user_my_profile")}}">Update my profile</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ url("app_logout") }}">Logout</a>
+                                </div>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('outing_add') }}" id="menu">Plan an Outing</a>
@@ -55,16 +57,27 @@
                                 <a class="nav-link" href="{{ url('app_login') }}" id="menu">Login</a>
                             </li>
                         {% endif %}
-                        {% if app.user %}
-                        <li class="nav-item">
-                            <div class="nav-link text-white">Your are connected as : {{ app.user.username }}</div>
-                        </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <div class="nav-link text-white">You are not connected</div>
-                            </li>
-                        {% endif %}
+
                     </ul>
+                    {% if app.user %}
+                        <div class="row mr-5">
+                            <p class="text-white mr-3 mt-2">Your are connected as : {{ app.user.username }}</p>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="menu">
+                                    <img src="/images/users/{{ app.user.filename }}" alt="profilePic" id="picPlanner">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ url("user_my_profile")}}">Update my profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ url("app_logout") }}">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+
+                        <div class="text-white">You are not connected</div>
+
+                    {% endif %}
                 </div>
             </nav>
         </header>

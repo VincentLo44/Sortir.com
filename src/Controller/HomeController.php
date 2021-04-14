@@ -55,7 +55,7 @@ class HomeController extends AbstractController
         if(!is_null($this->getUser())) {
             $outings = $outingRepository->findAllVisibleQuery($search, $this->getUser());
         }
-
+        dump($this->getUser());
         return $this->render('home/home.html.twig', [
             'outings' => $outings,
             'form' => $form->createView(),
