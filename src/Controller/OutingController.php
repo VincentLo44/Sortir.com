@@ -173,6 +173,8 @@ class OutingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $outing->setStatus($entityManager->getRepository(OutingStatus::class)->findOneBy(['description' => 'Cancelled']));
+
             $entityManager->persist($outing);
             $entityManager->flush();
 
