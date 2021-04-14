@@ -133,4 +133,11 @@ class OutingController extends AbstractController
             ]);
 
     }
+
+    /**
+     * @Route(path="cancel", name="cancel")
+     */
+    public function cancel() {
+
+    }
 }
