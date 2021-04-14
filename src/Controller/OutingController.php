@@ -61,7 +61,6 @@ class OutingController extends AbstractController
             $entityManager->persist($outing);
 
             $entityManager->flush();
-            dump($outing);
 
             $inscription = new Inscription();
             $inscription->setStatus('Registered');

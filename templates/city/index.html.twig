@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}City index{% endblock %}
+
+{% block body %}
+
+<div class="col-6 py-4 mx-auto text-center">
+    <div class="mb-4">
+        <h1>City index</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">PostalCode</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for city in cities %}
+                <tr>
+                    <td>{{ city.id }}</td>
+                    <td>{{ city.name }}</td>
+                    <td>{{ city.postalCode }}</td>
+                    <td>
+                        <a class="mx-1" href="{{ path('city_show', {'id': city.id}) }}">Show</a>
+                        <a class="mx-1" href="{{ path('city_edit', {'id': city.id}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No cities found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-warning" href="{{ path('city_new') }}">Create new</a>
+    </div>
+</div>
+{% endblock %}
