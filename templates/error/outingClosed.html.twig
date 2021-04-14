@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="col-4 pb-5 pt-3 mx-auto text-center">
+    <h1 class="h3 mb-3 font-weight-normal">
+        The outing {{ outing.name }} is closed !
+    </h1>
+    <p>You can contact the planner for more informations : <a href="{{ url('user_details_profile', {'id' : outing.planner.id}) }}">{{ outing.planner.username }}</a></p>
+</div>
+{% endblock %}
+
+{% block title %}
+    Outing closed
+{% endblock %}
+

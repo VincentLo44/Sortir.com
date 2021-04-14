@@ -71,7 +71,7 @@ class InscriptionController extends AbstractController
             }
         }
 
-        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+        return $this->redirectToRoute('outing_detail', ['id' => $outing->getId()]);
     }
 
 

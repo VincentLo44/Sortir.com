@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -82,6 +83,13 @@ class OutingController extends AbstractController
 
         if (is_null($outing)) {
             return $this->render('error/outingNotFound.html.twig');
+        }
+
+        if($outing->getStatus()->getDescription() == 'Closed'){
+
+            $content = $this->renderView('error/outingClosed.html.twig', ['outing' => $outing]);
+
+            return new Response($content, 404);
         }
 
     //    $participants = $outing->
