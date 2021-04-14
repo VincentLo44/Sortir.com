@@ -77,4 +77,8 @@ footer {
     object-fit: cover;
 }
 
-
+.soHot {
+    height: 45px;
+    border-radius: 30px;
+    margin-left: 4%;
+}
