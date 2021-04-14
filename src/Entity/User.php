@@ -111,7 +111,6 @@ class User implements UserInterface, \Serializable
      */
     private $filename;
 
-
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -166,6 +165,18 @@ class User implements UserInterface, \Serializable
     public function setFilename(?string $filename): User
     {
         $this->filename = $filename;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
         return $this;
     }
 
@@ -388,17 +399,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updated_at;
-    }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
 
     /** @see \Serializable::serialize() */
     public function serialize()

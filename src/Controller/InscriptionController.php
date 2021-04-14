@@ -96,7 +96,7 @@ class InscriptionController extends AbstractController
         $entityManager->flush();
         $this->addFlash('success', 'You are no longer registered in this outing');
 
-        return $this->redirectToRoute('outing_detail');
+        return $this->redirectToRoute('outing_detail', ['id' => $outing->getId()]);
     }
 
 

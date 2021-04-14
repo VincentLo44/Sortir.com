@@ -1,10 +1,12 @@
 
 a {
     color: #EF8100;
+    transition: all 0.3s ease-out 0s;
 }
 
     a:hover {
         color: #c46900;
+
     }
 
 header {
