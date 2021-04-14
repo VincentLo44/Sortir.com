@@ -26,24 +26,30 @@
                             </a>
                         </li>
                         {% if app.user %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url("user_my_profile")}}" id="menu">My Profile</a>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="menu">My Profile</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ url("user_my_profile")}}">Update my profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ url("app_logout") }}">Logout</a>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url("app_logout")}}" id="menu">Logout ({{ app.user.username }})</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('outing_add') }}" id="menu">Plan an Outing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('outing_my_outings') }}" id="menu">My Outings</a>
+                            </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="menu">Admin</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Campus</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Cities</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url("app_register") }}">New User</a>
-                            </div>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="menu">Admin</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Campus</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Cities</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ url("app_register") }}">New User</a>
+                                </div>
+                            </li>
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('app_login') }}" id="menu">Login</a>
