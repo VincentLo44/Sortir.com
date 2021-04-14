@@ -41,7 +41,6 @@
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -70,7 +69,6 @@ hr:not([size]) {
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 5px;
-  font-family: "Raleway", sans-serif;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -219,7 +217,6 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--bs-font-monospace);
   font-size: 1em;
 }
 
@@ -315,7 +312,6 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
@@ -5597,7 +5593,6 @@ progress {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5699,7 +5694,6 @@ progress {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7654,9 +7648,6 @@ progress {
   word-break: break-word !important;
 }
 
-.font-monospace {
-  font-family: var(--bs-font-monospace) !important;
-}
 
 .user-select-all {
   -webkit-user-select: all !important;
@@ -12403,7 +12394,6 @@ body {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -12426,10 +12416,7 @@ h4,
 h5,
 .h5,
 h6,
-.h6 {
-  font-family: "Raleway", sans-serif;
-  color: #333;
-}
+
 
 ol, ul {
   margin: 0;

@@ -209,6 +209,21 @@ class OutingController extends AbstractController
 
         }
 
+    /**
+     * @Route(path="publish", name="publish")
+     */
+    public function publish(Request $request, EntityManagerInterface $entityManager) {
 
+        $outing = $entityManager->getRepository(Outing::class)->find($request->get('outing'));
+
+        $outing->setStatus($entityManager->getRepository(OutingStatus::class)->findOneBy(['description' => 'Opened']));
+
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Congrats ! Your outing is published !');
+
+        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+
+        }
 
 }

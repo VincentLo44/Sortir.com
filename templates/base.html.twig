@@ -10,7 +10,7 @@
         <title>Sortir.com | {% block title %}{% endblock %}</title>
     </head>
     <body>
-    <header class="header-section d-lg-block d-none">
+    <header class="header-section d-lg-block">
 
         <nav class="navbar navbar-expand-lg navbar-dark py-0">
             <a class="navbar-brand" href="{{ url("home_home") }}">
@@ -20,69 +20,79 @@
                     aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse">
-                <div class="row header-bottom sticky-header">
+                <div class="main-menu">
+                    <nav class="row">
+                        <ul>
+                            <li class="has-dropdown">
+                                <a class="active main-menu-link" href="{{ url("home_home") }}" id="menu">Home</a>
+                            </li>
+                            {% if app.user %}
+                                <li class="has-dropdown">
+                                    <a href="#">
+                                        <img src="/images/users/{{ app.user.filename }}" alt="profilePic" id="picPlanner">
+                                        My profile
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="sub-menu nolist-ul">
+                                        <li><a href="{{ url("user_my_profile")}}">Update my profile</a></li>
+                                        <li><a href="{{ url("app_logout") }}">Logout</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="#">Outings <i class="fa fa-angle-down"></i></a>
+                                    <ul class="sub-menu nolist-ul">
+                                        <li><a href="{{ url('outing_add') }}">Plan an outing</a></li>
+                                        <li><a href="{{ url('outing_my_outings') }}">My outings</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="#">Admin <i class="fa fa-angle-down"></i></a>
+                                    <ul class="sub-menu nolist-ul">
+                                        <li><a href="#">Campus</a></li>
+                                        <li><a href="#">Cities</a></li>
+                                        <li><a href="{{ url("app_register") }}">New User</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="has-dropdown">
+                                    <a class="main-menu-link" href="{{ url('app_login') }}" id="menu">Login</a>
+                                </li>
 
-                    <div class="row" style="display: block;">
-                        <div class="main-menu">
+                                <li class="has-dropdown">
+                                    <a href="#" class="p-1">
+                                        <img src="{{ asset('img/maple-syrup.png') }}"
+                                             onmouseover="this.src='{{ asset('img/maple-syrup2.png') }}';"
+                                             onmouseout="this.src='{{ asset('img/maple-syrup.png') }}';"
+                                             alt="mapple-syrup" height="50px">
 
-                            <nav>
-                                <ul>
-                                    <li class="has-dropdown">
-                                        <a class="active main-menu-link" href="{{ url("home_home") }}" id="menu">Home</a>
-                                    </li>
-                                    {% if app.user %}
-                                        <li class="has-dropdown">
-                                            <a href="#">My profile <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu nolist-ul">
-                                                <li><a href="{{ url("user_my_profile")}}">Update my profile</a></li>
-                                                <li><a href="{{ url("app_logout") }}">Logout</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-dropdown">
-                                            <a href="#">Outings <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu nolist-ul">
-                                                <li><a href="{{ url('outing_add') }}">Plan an outing</a></li>
-                                                <li><a href="{{ url('outing_my_outings') }}">My outings</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-dropdown">
-                                            <a href="#">Admin <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu nolist-ul">
-                                                <li><a href="#">Campus</a></li>
-                                                <li><a href="#">Cities</a></li>
-                                                <li><a href="{{ url("app_register") }}">New User</a></li>
-                                            </ul>
-                                        </li>
-                                    {% else %}
-                                        <li class="has-dropdown">
-                                            <a class="main-menu-link" href="{{ url('app_login') }}" id="menu">Login</a>
-                                        </li>
-                                    {% endif %}
-                                    {% if app.user %}
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="sub-menu nolist-ul">
                                         <li>
-                                            <p style="font-size: 12px;color: #fff;">
-                                                <img class="mr-2" src="{{ asset('img/connected-icon.png') }}" alt="connected" height="15px">
-                                                You are connected as Celine Dion
-                                            </p>
+                                            <a class="dropdown-item" href="https://www.voyagevoyage.ca/destinations/canada/raisons-canada-meilleur-pays-1.2126494">
+                                                Why Canada ?
+                                            </a>
                                         </li>
-                                    {% else %}
                                         <li>
-                                            <p style="font-size: 12px;color: #fff;">
-                                                You are not connected
-                                            </p>
+                                            <a class="dropdown-item" href="https://www.public.fr/News/Photos/Photos-50-stars-qui-sont-canadiennes-et-vous-ne-le-saviez-pas-1192406">
+                                                Canada : To many Talents !!
+                                            </a>
                                         </li>
-                                    {% endif %}
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                                        <li>
+                                            <a class="dropdown-item" href="https://media-exp1.licdn.com/dms/image/C5603AQGXzlQUgfIsoA/profile-displayphoto-shrink_200_200/0/1560400258476?e=1623888000&v=beta&t=IV8tUujGvsEcpv6RJR0Zaj-tai3adnQn8cIUj2HZj1w">
+                                                Canada : So Hot !!!
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </nav>
     </header>
-
 
         {% for status, messages in app.flashes %}
             {% for message in messages %}

@@ -9,7 +9,7 @@
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+        <h1 class="h3 mb-5 font-weight-normal text-center">Create a new user :</h1>
 
         <div>
         {{ form_start(registrationForm) }}
@@ -30,7 +30,7 @@
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
 
                 <select name="campus" class="custom-select mx-1">
-                    <option value="">--Please choose an option--</option>
+                    <option value="">--Choose a campus--</option>
                     {% for campus in listCampus %}
                         <option value="{{ campus.id }}">{{campus.name}}</option>
                     {% endfor %}
@@ -40,13 +40,17 @@
             {{ form_widget(registrationForm.plainPassword,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password'}}) }}
 
-                <div class="custom-control custom-checkbox">
-                    {{ form_widget(registrationForm.agreeTerms) }}
-                    {{ form_label(registrationForm.agreeTerms) }}
-                </div>
-            <button type="submit" class="btn btn-lg btn-warning">
-                Register
-            </button>
+
+            <div class="form-check ml-2 mt-3">
+                {{ form_widget(registrationForm.agreeTerms,
+                    {'attr': {'class': 'form-check-input', 'type' : 'checkbox'}}) }}
+                {{ form_label(registrationForm.agreeTerms) }}
+            </div>
+            <div class="mt-4 mx-auto d-flex justify-content-center">
+                <button type="submit" class="btn btn-lg btn-warning">
+                    Register
+                </button>
+            </div>
         </div>
         {{ form_end(registrationForm) }}
     </div>

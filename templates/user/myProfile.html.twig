@@ -52,18 +52,16 @@
                 {% endif %}
 
                 <div class="mt-4 ml-2 p-2 border">
-                    <label>Add or change your profile picture :</label>
+                    <p>Add or change your profile picture :</p>
                     {{ form_widget(userForm.imageFile) }}
                 </div>
 
-                <div class="row mt-5 d-flex justify-content-center">
+                <div class="mt-5 mx-auto d-flex justify-content-center">
                     <button type="submit" class="btn btn-lg btn-warning">
                        Update
                     </button>
                 </div>
 
                 {{ form_end(userForm) }}
-
-
 
 {% endblock %}

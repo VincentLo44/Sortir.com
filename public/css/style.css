@@ -54,6 +54,7 @@ table th {
     height: 42px;
     width: 42px;
     border-radius: 35px;
+    border: 2px solid;
     margin-right: 5px;
     object-fit: cover;
 }
@@ -67,6 +68,7 @@ footer {
 .pic-profile-box{
     height: 160px;
     width: 160px;
+    background-color:#EF8100;
 }
 
 .pic-profile{
@@ -74,3 +76,5 @@ footer {
     height: 150px;
     object-fit: cover;
 }
+
+

@@ -6,7 +6,7 @@
 
 <div class="col-8 py-4 mx-auto">
 
-    <div class="row mb-5 d-flex justify-content-center">
+    <div class="mb-5 mx-auto d-flex justify-content-center">
         {% if sub %}
             <form class="mr-2" method="post" action="{{ url('inscription_unsubscribe') }}">
                 <input type="text" name="outing" value="{{ outing.id }}" hidden>
@@ -33,11 +33,10 @@
         {% endif %}
 
         {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
-            <div class="mr-2">
-                <button type="submit" class="btn btn-lg btn-warning">
-                    Publish
-                </button>
-            </div>
+            <form class="mr-2" method="post" action="{{ url("outing_publish") }}">
+                <input type="text" name="outing" value="{{ outing.id }}" hidden>
+                <input type="submit" class="btn btn-lg btn-warning" name="Publish" value="Publish">
+            </form>
         {% endif %}
 
         <div class="mr-2">
