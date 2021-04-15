@@ -5,7 +5,7 @@
 {% block body %}
 <div class="col-6 py-4 mx-auto text-center">
     <div class="mb-4">
-        <h1>Place index</h1>
+        <h1 class="mb-3">Places</h1>
 
         <table class="table table-hover">
             <thead>
@@ -25,8 +25,12 @@
                     <td>{{ place.latitude }}</td>
                     <td>{{ place.longitude }}</td>
                     <td>
-                        <a class="mx-1" href="{{ path('place_show', {'id': place.id}) }}">show</a>
-                        <a class="mx-1" href="{{ path('place_edit', {'id': place.id}) }}">edit</a>
+                        <p class="row">
+                            <a class="col-4 link-border" href="{{ path('place_show', {'id': place.id}) }}">Show</a>
+
+                            <a class="col-4" href="{{ path('place_edit', {'id': place.id}) }}">Edit</a>
+                        </p>
+
                     </td>
                 </tr>
             {% else %}

@@ -2,6 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name= "robots" content= "index, follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="twitter:card" content="Sortir.com">
+        <meta property="og:title" content="Sortir.com">
+        <meta property="og:type" content="website">
+        <meta property="og:description" content="Sortir.com">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-sandstone.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -23,7 +30,7 @@
             <div class="collapse navbar-collapse">
                 <div class="main-menu">
                     <nav class="row">
-                        <ul>
+                        <ul class="m-0">
                             <li class="has-dropdown">
                                 <a class="active main-menu-link" href="{{ url("home_home") }}" id="menu">Home</a>
                             </li>
@@ -82,13 +89,15 @@
                                         <li>
                                             <a class="dropdown-item" href="{{ asset('images/users/1560400258476.jpeg') }}">
                                                 Canada : So hot !!!
-                                                <img class="soHot" src="{{ asset('images/users/1560400258476.jpeg') }}" alt="profilePic" height="20px">
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                             {% endif %}
                         </ul>
+                        {% if app.user %}
+                            <img src="{{ asset('img/allOutingsHere.png') }}" alt="allOutingsHere" id="imgAllOutings">
+                        {% endif %}
                     </nav>
                 </div>
             </div>
