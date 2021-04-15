@@ -53,13 +53,15 @@
                     <option value="{{ city.id }}">{{city.name}}</option>
                 {% endfor %}
             </select>
+            <a class="ml-2" href="{{ url('city_new') }}">Add a new city</a>
 
-            <select name="place" class="custom-select m-1">
+            <select name="place" class="custom-select m-1 mt-2">
                 <option value="">--Please choose a place--</option>
                 {% for place in listPlaces %}
                     <option value="{{ place.id }}">{{place.name}}</option>
                 {% endfor %}
             </select>
+            <a class="ml-2" href="{{ url('place_new') }}">Add a new place</a>
 
         <div class="mt-5 text-center">
             <button type="submit" class="btn btn-lg btn-warning mr-2">
