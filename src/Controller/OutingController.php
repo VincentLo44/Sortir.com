@@ -148,7 +148,7 @@ class OutingController extends AbstractController
 
             $this->addFlash('success', 'Congrats ! Your outing has been modified !');
 
-            return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+            return $this->redirectToRoute('outing_detail', ['id' => $outing->getId()]);
 
         }
 
@@ -215,7 +215,7 @@ class OutingController extends AbstractController
 
         $this->addFlash('success', 'Congrats ! Your outing is published !');
 
-        return $this->render('outing/detail.html.twig', ['outing' => $outing]);
+        return $this->redirectToRoute('outing_detail', ['id' => $outing->getId()]);
 
         }
 
