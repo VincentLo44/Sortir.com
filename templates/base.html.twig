@@ -95,7 +95,9 @@
                                 </li>
                             {% endif %}
                         </ul>
-                        <img src="{{ asset('img/allOutingsHere.png') }}" alt="allOutingsHere" id="imgAllOutings">
+                        {% if app.user %}
+                            <img src="{{ asset('img/allOutingsHere.png') }}" alt="allOutingsHere" id="imgAllOutings">
+                        {% endif %}
                     </nav>
                 </div>
             </div>
