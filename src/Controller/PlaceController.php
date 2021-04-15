@@ -77,9 +77,12 @@ class PlaceController extends AbstractController
             return $this->redirectToRoute('place_index');
         }
 
+        $cities = $this->getDoctrine()->getRepository(City::class)->findAll();
+
         return $this->render('place/edit.html.twig', [
             'place' => $place,
             'form' => $form->createView(),
+            'cities' => $cities
         ]);
     }
 

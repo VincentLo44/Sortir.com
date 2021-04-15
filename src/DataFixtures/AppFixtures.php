@@ -45,15 +45,15 @@ class AppFixtures extends Fixture
 
         //INSERTION DES CAMPUS
         $campus = new Campus();
-        $campus->setName('SAINT HERBLAIN');
+        $campus->setName('MONTREAL');
         $manager->persist($campus);
 
         $campus = new Campus();
-        $campus->setName('RENNES');
+        $campus->setName('VANCOUVER');
         $manager->persist($campus);
 
         $campus = new Campus();
-        $campus->setName('LA ROCHE SUR YON');
+        $campus->setName('OTTAWA');
         $manager->persist($campus);
 
         $manager->flush();
@@ -131,7 +131,15 @@ class AppFixtures extends Fixture
         $manager->flush();
         $allCities = $manager->getRepository(City::class)->findAll();
 
+        $place = new Place();
+        $place->setName( $faker->name );
+        $place->setAddress( $faker->streetAddress );
+        $place->setLatitude($faker->latitude);
+        $place->setLongitude( $faker->longitude );
+
         //plein de création de lieu
+
+
         for($i = 0; $i < 10; $i++) {
 
             $place = new Place();
