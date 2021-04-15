@@ -4,9 +4,11 @@
     {{ form_widget(form.latitude) }}
     {{ form_widget(form.longitude) }}
     <select name="city" class="custom-select m-1">
-        <option value="">--Please choose a city--</option>
+        <option value="{{ place.city.id }}">{{ place.city.name }}</option>
         {% for city in cities %}
-            <option value="{{ city.id }}">{{city.name}}</option>
+            {% if place.city.id != city.id %}
+                <option value="{{ city.id }}">{{city.name}}</option>
+            {% endif %}
         {% endfor %}
     </select>
 <div class="mt-3 mx-auto d-flex justify-content-center">
