@@ -180,7 +180,7 @@ class OutingController extends AbstractController
             $entityManager->persist($outing);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Congrats ! Your outing has been cancelled !');
+            $this->addFlash('success', 'Your outing has been cancelled !');
 
             return $this->redirectToRoute('outing_detail', ['id' => $outing->getId()]);
         }

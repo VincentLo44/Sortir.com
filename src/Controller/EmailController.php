@@ -56,7 +56,7 @@ class EmailController extends AbstractController
 
         }
 
-        return $this->render('email/send.html.twig', ['mailForm' => $form->createView()]);
+        return $this->render('email/send.html.twig', ['mailForm' => $form->createView(), 'userRecipient' => $userRecipient]);
     }
 
 }
