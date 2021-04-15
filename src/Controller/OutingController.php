@@ -112,12 +112,6 @@ class OutingController extends AbstractController
             $sub = true;
         }
 
-        // find one by user et outing en parametres outing et user connecté
-        // si diff de null et si status de l'inscription est  registered alors il est inscrit
-        // sinon déjà false
-        // si true rentre dans le if
-
-
         $listeInscriptions = $entityManager->getRepository(Inscription::class)->findBy(['outing' => $outing]);
         $inscriptions = [];
 

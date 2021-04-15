@@ -1,13 +1,18 @@
 
 a {
     color: #EF8100;
-    transition: all 0.3s ease-out 0s;
+    transition: all 0.5s ease-out 0s;
 }
 
     a:hover {
         color: #c46900;
 
     }
+
+link-border {
+    border-right: 1px solid;
+    padding: 0px;
+}
 
 header {
     background-color: #EF8100;
@@ -19,6 +24,11 @@ h3 {
 
 #menu {
     font-size: 15px;
+}
+
+#imgAllOutings {
+    width: 190px;
+    margin-left: 40px;
 }
 
 .line-warning {
