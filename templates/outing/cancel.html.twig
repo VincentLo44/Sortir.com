@@ -11,7 +11,8 @@
     </h1>
 
 
-    {{ form_start(outingCancellationForm) }}
+    {{ form_start(outingCancellationForm,
+        {'attr': {'onsubmit' : "return confirm('Are you sure you want to cancel this outing ?');" }}) }}
 
 
     <div class="col">
