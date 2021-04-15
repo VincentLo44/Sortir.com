@@ -3,8 +3,8 @@
 {% block title %}New Place{% endblock %}
 
 {% block body %}
-<div class="col-4 pb-5 pt-3 mx-auto">
-    <h1 class="mb-4 font-weight-normal text-center">Create new Place</h1>
+<div class="col-6 pb-5 pt-3 mx-auto">
+    <h1 class="mb-4 font-weight-normal text-center">Add a new place</h1>
 
     {{ form_start(form) }}
     {{ form_widget(form.name) }}
@@ -23,5 +23,7 @@
         <a  class="btn btn-warning mx-1" href="{{ path('place_index') }}">back to list</a>
 
         {{ form_end(form) }}
+    </div>
+</div>
 
 {% endblock %}
