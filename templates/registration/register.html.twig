@@ -9,25 +9,30 @@
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
 
-        <h1 class="h3 mb-5 font-weight-normal text-center">Create a new user :</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Create a New User</h1>
 
         <div>
         {{ form_start(registrationForm) }}
 
                 {{ form_widget(registrationForm.username,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Username'}}) }}
+                <div class="text-danger">{{ form_errors(registrationForm.username) }}</div>
 
                 {{ form_widget(registrationForm.lastname,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Lastname'}}) }}
+                <div class="text-danger">{{ form_errors(registrationForm.lastname) }}</div>
 
                 {{ form_widget(registrationForm.firstname,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Firstname'}}) }}
+                <div class="text-danger">{{ form_errors(registrationForm.firstname) }}</div>
 
                 {{ form_widget(registrationForm.phone,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Phone'}}) }}
+                <div class="text-danger">{{ form_errors(registrationForm.phone) }}</div>
 
                 {{ form_widget(registrationForm.email,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Email'}}) }}
+                <div class="text-danger">{{ form_errors(registrationForm.email) }}</div>
 
                 <select name="campus" class="custom-select mx-1">
                     <option value="">--Choose a campus--</option>
@@ -36,17 +41,17 @@
                     {% endfor %}
                 </select>
 
-
             {{ form_widget(registrationForm.plainPassword,
                 {'attr': {'class': 'form-control m-1', 'placeholder' : 'Password'}}) }}
+            <div class="text-danger">{{ form_errors(registrationForm.plainPassword) }}</div>
 
 
-            <div class="form-check ml-2 mt-3">
+            <div class="form-check ml-3 mt-2">
                 {{ form_widget(registrationForm.agreeTerms,
                     {'attr': {'class': 'form-check-input', 'type' : 'checkbox'}}) }}
                 {{ form_label(registrationForm.agreeTerms) }}
             </div>
-            <div class="mt-4 mx-auto d-flex justify-content-center">
+            <div class="mt-1 mx-auto d-flex justify-content-center">
                 <button type="submit" class="btn btn-lg btn-warning">
                     Register
                 </button>
