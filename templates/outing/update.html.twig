@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="col-6 py-5 mx-auto">
+    <div class="col-8 py-5 mx-auto">
 
         <h1 class="h3 mb-3 font-weight-normal">
             Update an outing !
@@ -82,18 +82,18 @@
 
         <div class="mt-6 d-flex justify-content-center mx-auto">
             <input type="text" name="outing" value="{{ outing.id }}" hidden>
-            <button type="submit" class="btn btn-lg btn-warning mr-2">
+            <button type="submit" class="btn btn-warning mr-2">
                 Update
             </button>
             {{ form_end(outingForm) }}
 
             <form action="{{ url('outing_cancel_confirmation') }}" method="get">
                 <input type="text" name="outing" value="{{ outing.id }}" hidden>
-                <input type="submit" class="btn btn-lg btn-warning mr-2" value="Cancel the outing"/>
+                <input type="submit" class="btn btn-warning mr-2" value="Cancel the outing"/>
             </form>
 
-            <a href="{{ url("home_home") }}" type="submit" class="btn btn-lg btn-warning ml-2">
-                Back to home
+            <a href="{{ url('outing_my_outings') }}" type="submit" class="btn btn-warning ml-2">
+                Back to My outings
             </a>
         </div>
 

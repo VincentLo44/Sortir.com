@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="col-8 py-4 mx-auto">
+<div class="col-10 py-4 mx-auto">
 
     <div class="mb-5 mx-auto d-flex justify-content-center">
         {% if sub %}
@@ -37,7 +37,10 @@
 
         <div class="mr-2">
             <a href="{{ url("home_home") }}" class="btn btn-lg btn-warning">
-                Back to home
+                Home
+            </a>
+            <a href="{{ url('outing_my_outings') }}" class="btn btn-lg btn-warning">
+                My outings
             </a>
         </div>
     </div>
@@ -50,80 +53,81 @@
                     {{ outing.planner.username }}
                 </a>
             </h1>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th scope="row">Duration</th>
-                    <td>{{ outing.duration }} minutes</td>
-                </tr>
-                <tr>
-                    <th scope="row">Outing's date and hour</th>
-                    <td>{{ outing.startingTime | date }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Inscription's date and hour limit</th>
-                    <td>{{ outing.maxDateInscription | date }}
-                        {% if outing.maxDateInscription < date() %}
-                            <b class="ml-2">Registrations are closed for this outing : please contact the
-                                <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">planner</a>
-                                for more informations</b>
-                        {% elseif outing.startingTime < date()%}
-                            <b class="ml-2">TOO LATE</b>
-                        {% endif %}
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Duration</th>
+                        <td>{{ outing.duration }} minutes</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Outing's date and hour</th>
+                        <td>{{ outing.startingTime | date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Inscription's date and hour limit</th>
+                        <td>{{ outing.maxDateInscription | date }}
+                            {% if outing.maxDateInscription < date() %}
+                                <b class="ml-2">Registrations are closed for this outing : please contact the
+                                    <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">planner</a>
+                                    for more informations</b>
+                            {% elseif outing.startingTime < date()%}
+                                <b class="ml-2">TOO LATE</b>
+                            {% endif %}
 
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Max number of registrations</th>
-                    <td>{{ outing.maxNbInscriptions }} places
-                        <b>
-                            {% if outing.startingTime > date() %}
-                            ({{ outing.maxNbInscriptions - outing.nbOfRegistrations }} registrations left)</b>
-                        {% if outing.nbOfRegistrations >= outing.maxNbInscriptions %}
-                            <b class="ml-2">Outing is fully booked : please contact the
-                                <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">planner</a>
-                                for more informations</b>
-                        {% endif %}
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Description and informations</th>
-                    <td>{{ outing.outingDetails }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Campus</th>
-                    <td>{{ outing.campus.name | capitalize }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Place</th>
-                    <td>{{ outing.place.name }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Street</th>
-                    <td>{{ outing.place.address }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Postal code</th>
-                    <td>{{ outing.place.city.postalCode }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Latitude</th>
-                    <td>{{ outing.place.latitude }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Longitude</th>
-                    <td>{{ outing.place.longitude }}</td>
-                </tr>
-                </tbody>
-            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Max number of registrations</th>
+                        <td>{{ outing.maxNbInscriptions }} places
+                            <b>
+                                {% if outing.startingTime > date() %}
+                                ({{ outing.maxNbInscriptions - outing.nbOfRegistrations }} registrations left)</b>
+                            {% if outing.nbOfRegistrations >= outing.maxNbInscriptions %}
+                                <b class="ml-2">Outing is fully booked : please contact the
+                                    <a href="{{ url('user_details_profile', { "id": outing.planner.id }) }}">planner</a>
+                                    for more informations</b>
+                            {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description and informations</th>
+                        <td>{{ outing.outingDetails }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Campus</th>
+                        <td>{{ outing.campus.name | capitalize }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Place</th>
+                        <td>{{ outing.place.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Street</th>
+                        <td>{{ outing.place.address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Postal code</th>
+                        <td>{{ outing.place.city.postalCode }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Latitude</th>
+                        <td>{{ outing.place.latitude }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Longitude</th>
+                        <td>{{ outing.place.longitude }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="p-4 col-4">
         {% if inscriptions is defined and inscriptions is not empty %}
 
                 <h1 class="h3 mb-3 font-weight-normal text-center">Who's in ?</h1>
-
-                <div >
+                <div class="table-responsive">
                     <table class="table">
                         <thead>
                         <tr>

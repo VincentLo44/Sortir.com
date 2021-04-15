@@ -186,7 +186,7 @@ header a:hover {
 }
 
 .mobile-menu {
-  border: 2px solid #EF8100;
+  border: 2px solid #fff;
   padding: 5px;
   display: block;
   border-radius: 4px;
@@ -196,7 +196,7 @@ header a:hover {
   display: block;
   width: 30px;
   height: 2px;
-  background: #EF8100;
+  background: #fff;
   margin-top: 5px;
   margin-bottom: 5px;
 }

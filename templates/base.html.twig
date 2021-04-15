@@ -20,13 +20,106 @@
     <header class="header-section d-lg-block">
 
         <nav class="navbar navbar-expand-lg navbar-dark py-0">
+
+            <!-- MOBILE -->
+
+
+            <!-- icon right -->
+
+            <div class="mobile-header-section d-block d-lg-none">
+                <div class="mobile-header-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between align-items-center">
+                                <div class="mobile-header--left">
+                                    <a href="#mobile-menu-offcanvas" class="mobile-menu offcanvas-toggle">
+                                        <span class="mobile-menu-dash"></span>
+                                        <span class="mobile-menu-dash"></span>
+                                        <span class="mobile-menu-dash"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- menu left -->
+
+            <div id="mobile-menu-offcanvas" class="offcanvas offcanvas-leftside offcanvas-mobile-menu-section">
+                <div class="mt-5 offcanvas-header text-right">
+                    <div class="offcanvas-close">
+                        <img src="{{ asset('img/x-mark.png') }}" alt="cross" height="30px" style="cursor:pointer">
+                    </div>
+                </div>
+                <div class="offcanvas-mobile-menu-wrapper">
+                    <div class="mobile-menu-top">
+
+                    </div>
+                    <div class="mobile-menu-center">
+                        <div class="offcanvas-menu">
+                            <ul>
+                                {% if app.user %}
+                                    <div class="mb-4" style="font-size: 12px;">
+                                        <img class="mr-1 pb-1" src="{{ asset('img/connected-icon.png') }}" alt="connected" height="15px">
+                                        Connected as Celine Dion
+                                    </div>
+                                {% endif %}
+                                <li>
+                                    <a class="my-2" href="{{ url("home_home") }}"><span>Home</span></a>
+                                </li>
+                                {% if app.user %}
+                                    <li>
+                                        <p><span>My Profile :</span></p>
+                                        <ul class="nolist-ul">
+                                            <li>
+                                                <a href="{{ url('user_my_profile')}}">- Update my profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('app_logout') }}">- Logout</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p><span>Outings :</span></p>
+                                        <ul class="nolist-ul">
+                                            <li>
+                                                <a href="{{ url('outing_add') }}">- Plan an outing</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('outing_my_outings') }}">- My outings</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="my-2"><span>Admin :</span></p>
+                                        <ul class="nolist-ul">
+                                            <li>
+                                                <a href="{{ url('place_index')}}">- Places</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('city_index') }}">- Cities</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('app_register') }}">- New User</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ url('app_login') }}" id="menu">Login</a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <a class="navbar-brand" href="{{ url("home_home") }}">
                 <img alt="logo" class="logo" src="{{ asset('img/sortir-logo.png') }}">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
             <div class="collapse navbar-collapse">
                 <div class="main-menu">
                     <nav class="row">
@@ -37,7 +130,11 @@
                             {% if app.user %}
                                 <li class="has-dropdown">
                                     <a href="#">
-                                        <img src="/images/users/{{ app.user.filename }}" alt="profilePic" id="picPlanner">
+                                        {% if app.user.filename %}
+                                            <img src="/images/users/{{ app.user.filename }}" alt="profilePic" id="picPlanner">
+                                        {% else %}
+                                            <img src="{{ asset('images/users/user.jpg') }}" alt="profilePic" id="picPlanner">
+                                        {% endif %}
                                         My profile
                                         <i class="fa fa-angle-down"></i>
                                     </a>
@@ -105,7 +202,9 @@
     </header>
 
 
-        {% for status, messages in app.flashes %}
+
+
+                {% for status, messages in app.flashes %}
             {% for message in messages %}
                 <div class="alert alert-{{status}} alert-dismissible fade show text-center my-2 mx-5" role="alert">
                     {{ message }}
@@ -137,6 +236,8 @@
 
     </footer>
 
+        <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
         <script src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
         <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
