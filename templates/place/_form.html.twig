@@ -4,12 +4,23 @@
     {{ form_widget(form.latitude) }}
     {{ form_widget(form.longitude) }}
     <select name="city" class="custom-select m-1">
-        <option value="{{ place.city.id }}">{{ place.city.name }}</option>
-        {% for city in cities %}
-            {% if place.city.id != city.id %}
-                <option value="{{ city.id }}">{{city.name}}</option>
-            {% endif %}
-        {% endfor %}
+        {% if place is defined %}
+            <option value="{{ place.city.id }}">{{ place.city.name }}</option>
+        {% else %}
+            <option value="">-- Choose a city --</option>
+        {% endif %}
+
+        {% if place is defined%}
+            {% for city in cities %}
+                {% if place.city.id != city.id %}
+                    <option value="{{ city.id }}">{{city.name}}</option>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for city in cities %}
+                    <option value="{{ city.id }}">{{city.name}}</option>
+            {% endfor %}
+        {% endif %}
     </select>
 <a class="ml-2" href="{{ url('city_new') }}">Add a new city</a>
 <div class="mt-3 mx-auto d-flex justify-content-center">
