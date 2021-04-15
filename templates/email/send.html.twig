@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Send an email{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="col-6 py-5 mx-auto">
+        <h1 class="h3 mb-3 font-weight-normal">
+            Do you want to send an email to ?
+        </h1>
+
+        {{ form_start(mailForm) }}
+        {{ form_widget(mailForm.object,
+            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Object'}}) }}
+
+        {{ form_widget(mailForm.content,
+            {'attr': {'class': 'form-control m-1', 'placeholder' : 'Content'}}) }}
+
+
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-lg btn-warning mr-2">
+                Send email
+            </button>
+        </div>
+
+        {{ form_end(mailForm) }}
+
+    </div>
+
+{% endblock %}

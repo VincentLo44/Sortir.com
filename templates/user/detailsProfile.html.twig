@@ -45,14 +45,14 @@
                     Back to home
                 </a>
             </div>
-            <div class="ml-2">
-                <a href="#" class="btn btn-lg btn-warning" id="button-send">
+
+            <form action="{{ url('email_send') }}" method="get">
+                <input type="text" name="user" value="{{ user.id }}" hidden>
+                <button id="button-send" type="submit" class="btn btn-lg btn-warning mr-2">
                     <img alt="logo" class="logo" src="{{ asset('img/send.png') }}">
-                </a>
-            </div>
+                </button>
+            </form>
         </div>
-
-
 
 
 
