@@ -3,35 +3,64 @@
 {% block body %}
 <div class="col-9 py-4 mx-auto">
     <div class="mb-4">
-        <h1 class="h3 mb-3 font-weight-normal text-center">Your Outings</h1>
             {% if outings is defined and outings is not empty %}
-            <div >
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Place</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for outing in outings %}
+                <h2 class="mb-4 font-weight-normal text-center">Outings I planned</h2>
+                <div >
+                    <table class="table table-hover">
+                        <thead>
                         <tr>
-                            <td width="200">
-                                <a href="{{ url('outing_detail',{ "id": outing.id }) }}">
-                                    {{ outing.name }}
-                                </a>
-                            </td>
-                            <td width="200">{{ outing.place.name}} - {{ outing.place.city.name}}</td>
-                            <td width="200">{{ outing.startingTime | date }}</td>
-                            <td width="200">{{ outing.status.description }}</td>
+                            <th scope="col">Name</th>
+                            <th scope="col">Place</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% endif %}
+                        </thead>
+                        <tbody>
+                        {% for outing in outings %}
+                            <tr>
+                                <td width="200">
+                                    <a href="{{ url('outing_detail',{ "id": outing.id }) }}">
+                                        {{ outing.name }}
+                                    </a>
+                                </td>
+                                <td width="200">{{ outing.place.name}} - {{ outing.place.city.name}}</td>
+                                <td width="200">{{ outing.startingTime | date }}</td>
+                                <td width="200">{{ outing.status.description }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% if outingsRegistered is defined and outingsRegistered is not empty %}
+                    <div class="mt-5 pt-5">
+                        <h2 class="mb-4 font-weight-normal text-center">Outings I registered</h2>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Place</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for outing in outingsRegistered %}
+                                <tr>
+                                    <td width="200">
+                                        <a href="{{ url('outing_detail',{ "id": outing.id }) }}">
+                                            {{ outing.name }}
+                                        </a>
+                                    </td>
+                                    <td width="200">{{ outing.place.name}} - {{ outing.place.city.name}}</td>
+                                    <td width="200">{{ outing.startingTime | date }}</td>
+                                    <td width="200">{{ outing.status.description }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
     </div>
 </div>
 

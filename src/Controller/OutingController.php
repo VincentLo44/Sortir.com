@@ -197,8 +197,9 @@ class OutingController extends AbstractController
 
         $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $this->getUser()->getUsername()]);
         $outings = $entityManager->getRepository(Outing::class)->findBy(['planner' => $user]);
+        $outingsRegistered = $entityManager->getRepository(Outing::class)->findOutingRegistered($user);
 
-        return $this->render("outing/myOutings.html.twig",['outings' => $outings]);
+        return $this->render("outing/myOutings.html.twig",['outings' => $outings, 'outingsRegistered' => $outingsRegistered]);
 
         }
 

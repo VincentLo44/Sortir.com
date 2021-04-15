@@ -91,6 +91,16 @@ class OutingRepository extends ServiceEntityRepository
 
     }
 
+    public function findOutingRegistered(User $user){
+        $query = $this->createQueryBuilder('o');
+        $query  ->join('o.inscriptions','i')
+                ->where('i.user = :user')
+                ->setParameter(':user', $user);
+
+        return $query->getQuery()->getResult();
+
+    }
+
     /*
     public function findOneBySomeField($value): ?Outing
     {
