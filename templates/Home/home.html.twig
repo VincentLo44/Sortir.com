@@ -21,7 +21,6 @@
                 </p>
             </div>
         </div>
-        <div class="py-5"></div>
     {%  endif %}
 {% endblock %}
 
@@ -121,11 +120,11 @@
                             <tbody>
                             {% for outing in outings %}
                                 <tr>
-                                    <td width="200">{{ outing.name }}</td>
-                                    <td width="200">{{ outing.startingTime|date('d/m/Y à H:i') }}</td>
-                                    <td width="200">{{ outing.maxDateInscription|date('d/m/Y à H:i') }}</td>
-                                    <td width="200">{{ outing.campus.name}}</td>
-                                    <td width="200" class="pt-1">
+                                    <td>{{ outing.name }}</td>
+                                    <td>{{ outing.startingTime|date('d/m/Y à H:i') }}</td>
+                                    <td>{{ outing.maxDateInscription|date('d/m/Y à H:i') }}</td>
+                                    <td>{{ outing.campus.name}}</td>
+                                    <td class="pt-1">
                                         <a href="{{ url('user_details_profile',{ "id": outing.planner.id }) }}">
                                             {% if outing.planner.filename %}
                                                 <img src="/images/users/{{ outing.planner.filename }}" alt="profilePic" id="picPlanner">
@@ -135,7 +134,8 @@
                                             {{ outing.planner.username }}
                                         </a>
                                     </td>
-                                    <td width="200">
+                                    <td>
+                                        <p>{{ outing.status.description }}</p>
                                         <a href="{{ url('outing_detail',{ "id": outing.id })}}">
                                             See details
                                         </a>
