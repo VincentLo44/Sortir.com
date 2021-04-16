@@ -112,18 +112,17 @@
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Date of the event</th>
-                                <th scope="col">End of inscriptions</th>
                                 <th scope="col">Campus</th>
                                 <th scope="col">Planner</th>
+                                <th scope="col">Participants</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for outing in outings %}
                                 <tr>
-                                    <td>{{ outing.name }}</td>
+                                    <td><b>{{ outing.name }}</b></td>
                                     <td>{{ outing.startingTime|date('d/m/Y à H:i') }}</td>
-                                    <td>{{ outing.maxDateInscription|date('d/m/Y à H:i') }}</td>
                                     <td>{{ outing.campus.name}}</td>
                                     <td class="pt-1">
                                         <a href="{{ url('user_details_profile',{ "id": outing.planner.id }) }}">
@@ -135,6 +134,7 @@
                                             {{ outing.planner.username }}
                                         </a>
                                     </td>
+                                    <td>{{ outing.nbOfRegistrations }} / {{ outing.maxNbInscriptions }}</td>
                                     <td>
                                         <p>{{ outing.status.description }}</p>
                                         <a href="{{ url('outing_detail',{ "id": outing.id })}}">

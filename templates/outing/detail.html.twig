@@ -140,6 +140,11 @@
                             <tr>
                                 <td width="200">
                                     <a href="{{ url('user_details_profile',{ "id": inscr.user.id }) }}">
+                                        {% if inscr.user.filename %}
+                                            <img src="/images/users/{{ inscr.user.filename }}" alt="profilePic" id="picPlanner">
+                                        {% else %}
+                                            <img src="{{ asset('images/users/user.jpg') }}" alt="profilePic" id="picPlanner">
+                                        {% endif %}
                                         {{ inscr.user.username }}
                                     </a>
                                 </td>
