@@ -36,29 +36,29 @@ class OutingRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(Search $search, User $user): array
     {
-        $query = $this->createQueryBuilder('u');
-        $query  ->leftJoin('u.inscriptions','i');
-        $arrayOutingId =array();
-        $arrayOutingStatusName =array();
+        $query = $this->createQueryBuilder('o');
+        $query  ->leftJoin('o.inscriptions','i');
+        $arrayOutingId = array();
+        $arrayOutingStatusName = array();
 
         if ($search->getName()) {
-            $query = $query->andWhere('u.name like :name')->setParameter(':name', '%'.$search->getName().'%');
+            $query = $query->andWhere('o.name like :name')->setParameter(':name', '%'.$search->getName().'%');
         }
 
         if ($search->getCampus()) {
-            $query = $query->andWhere('u.campus = :campus')->setParameter(':campus', $search->getCampus());
+            $query = $query->andWhere('o.campus = :campus')->setParameter(':campus', $search->getCampus());
         }
 
         if ($search->getDateMin()) {
-            $query = $query->andWhere('u.startingTime > :dateMin')->setParameter(':dateMin', $search->getDateMin());
+            $query = $query->andWhere('o.startingTime > :dateMin')->setParameter(':dateMin', $search->getDateMin());
         }
 
         if ($search->getDateMax()) {
-            $query = $query->andWhere('u.startingTime < :dateMax')->setParameter(':dateMax', $search->getDateMax());
+            $query = $query->andWhere('o.startingTime < :dateMax')->setParameter(':dateMax', $search->getDateMax());
         }
 
         if ($search->getPlanner()) {
-            $query = $query->andWhere('u.planner = :planner')
+            $query = $query->andWhere('o.planner = :planner')
                     ->setParameter(':planner', $search->getPlanner()->getId());
         }
 
@@ -73,7 +73,7 @@ class OutingRepository extends ServiceEntityRepository
                 array_push($arrayOutingId, $oIR->getOuting()->getId());
             }
 
-            $query = $query ->andWhere('u.id NOT IN (:array)')
+            $query = $query ->andWhere('o.id NOT IN (:array)')
                             ->setParameter(':array', $arrayOutingId);
         }
 
@@ -84,7 +84,7 @@ class OutingRepository extends ServiceEntityRepository
             }
         }
 
-        $query = $query ->andWhere('u.status IN (:status)')
+        $query = $query ->andWhere('o.status IN (:status)')
                         ->setParameter(':status', $arrayOutingStatusName);
 
         return $query->getQuery()->getResult();
