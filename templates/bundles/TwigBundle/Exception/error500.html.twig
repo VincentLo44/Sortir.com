@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="col-4 pb-5 pt-3 mx-auto text-center">
+    <h1 class="h3 mb-3 font-weight-normal">
+        Oups Server Error !
+    </h1>
+    <p><a href="#">Refresh</a><b> OR </b><a href="{{ url('home_home') }}">Return to the homepage</a></p>
+</div>
+{% endblock %}
+
+{% block title %}
+    Outing closed
+{% endblock %}
+
