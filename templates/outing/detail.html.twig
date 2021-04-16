@@ -20,7 +20,7 @@
             </form>
         {% endif %}
 
-        {% if outing.planner.username == app.user.username and outing.status.description == 'Created'%}
+        {% if outing.planner.username == app.user.username %}
 
             <form class="mr-2" method="post" action="{{ url("outing_update") }}">
                 <input type="text" name="outing" value="{{ outing.id }}" hidden>
