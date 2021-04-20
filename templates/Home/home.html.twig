@@ -4,7 +4,7 @@
 
 {% block home %}
     {% if app.user %}
-        <div>
+        <div class="p-0">
             <img src="{{ asset('img/canada-bg.jpg') }}" alt="moose-background" width="100%">
         </div>
 
@@ -21,13 +21,12 @@
                 </p>
             </div>
         </div>
-        <div class="py-5"></div>
     {%  endif %}
 {% endblock %}
 
 {% block body%}
 
-    <div class="col-10 py-4 mx-auto">
+    <div class="col-11 py-4 mx-auto">
         <div class="mb-4">
             {% if app.user %}
 

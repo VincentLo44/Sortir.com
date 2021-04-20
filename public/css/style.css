@@ -31,6 +31,11 @@ h3 {
     margin-left: 40px;
 }
 
+.banniere {
+    width: 100%;
+    margin: 0;
+}
+
 .line-warning {
     background-color: #EF8100;
     padding: 1%;
