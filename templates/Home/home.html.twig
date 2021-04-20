@@ -43,6 +43,8 @@
                     <h3 class="text-light text-center mt-2">Search an outing</h3>
                 </div>
                 <div class="jumbotron py-4">
+
+{# ******* DEBUT DU FORMULAIRE DE RECHERCHE ********** #}
                     <form class="row">
                         {{ form_start(form) }}
                         <div class="col-6">
@@ -57,17 +59,23 @@
                                 </div>
 
                                 <div class="col">
-                                    {{ form_widget(form.name, {'attr': {'name': 'name', 'class': 'form-control  mb-3', 'placeholder' : 'Search by name'}}) }}
+                                    {{ form_widget(form.name, {'attr': {'name': 'name',
+                                                                        'class': 'form-control  mb-3',
+                                                                        'placeholder' : 'Search by name'}}) }}
                                 </div>
                             </div>
                             <div class="border pt-3">
                                 <div class="col">
                                     Between
-                                    {{ form_widget(form.dateMin, {'attr': {'name': 'dateMin', 'class': 'form-control  mb-3', 'type': 'date'}}) }}
+                                    {{ form_widget(form.dateMin, {'attr': {'name': 'dateMin',
+                                                                            'class': 'form-control  mb-3',
+                                                                            'type': 'date'}}) }}
                                 </div>
                                 <div class="col">
                                     and
-                                    {{ form_widget(form.dateMax, {'attr': {'name': 'dateMax', 'class': 'form-control  mb-3', 'type': 'date'}}) }}
+                                    {{ form_widget(form.dateMax, {'attr': {'name': 'dateMax',
+                                                                            'class': 'form-control  mb-3',
+                                                                            'type': 'date'}}) }}
                                 </div>
                             </div>
 
@@ -101,6 +109,7 @@
                             </a>
                         </div>
                     </form>
+{# ******* FIN DU FORMULAIRE DE RECHERCHE ********** #}
 
                 </div>
 
